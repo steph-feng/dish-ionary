@@ -1,5 +1,5 @@
 # Restaurant Finder
-### CPSC 210 Personal Project
+## CPSC 210 Personal Project
 This application stores restaurants and organizes them based on the users' needs. 
 Any casual restaurant-goer can input a restaurant and its characteristics such as 
 a rating, pricing, hours, and cuisine into a customized collection. The user can then search for a restaurant in any 
