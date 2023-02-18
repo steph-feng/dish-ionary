@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Random;
 
 public class ListOfRestaurant {
@@ -38,28 +37,23 @@ public class ListOfRestaurant {
     }
 
     // EFFECTS: sorts restaurant ratings in descending order
-    public ArrayList<Restaurant> sortRatingsOld() {
-        ArrayList<Integer> ratingList = new ArrayList<>();
-        for (Restaurant r: restaurants) {
-            ratingList.add(r.getRating());
-        }
-        Collections.sort(ratingList);
-        return restaurants; // NOT COMPLETE
+    public ArrayList<Restaurant> sortRatings() {
+        Collections.sort(restaurants, new RestaurantRatingComparator());
+        return restaurants;
     }
 
 
-    // for loop find the first thing with the same rating
-
     // EFFECTS: sorts restaurant prices from $ -> $$ -> $$$ -> $$$$
     public ArrayList<Restaurant> sortPrices() {
-        return new ArrayList<>();
+        Collections.sort(restaurants, new RestaurantPriceComparator());
+        return restaurants;
     }
 
     // REQUIRES: one of $, $$, $$$, $$$$
     // EFFECTS: filter restaurant prices to only show restaurants that are at given price
     public ArrayList<Restaurant> filterPrices(String s) {
         ArrayList<Restaurant> filteredList = new ArrayList();
-        for (Restaurant r : restaurants) {
+        for (Restaurant r: restaurants) {
             if (r.getPricing() == s) {
                 filteredList.add(r);
             }
@@ -103,6 +97,7 @@ public class ListOfRestaurant {
         return restaurants;
     }
 
+    // EFFECTS: gets names of all restaurants in list
     public ArrayList<String> getRestaurantNames() {
         ArrayList<String> restaurantNames = new ArrayList<>();
         for (Restaurant r : restaurants) {

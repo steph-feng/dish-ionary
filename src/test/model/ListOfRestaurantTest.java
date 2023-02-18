@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ListOfRestaurantTest {
     ListOfRestaurant testList;
@@ -80,9 +80,31 @@ class ListOfRestaurantTest {
         testList.addExistingRestaurant(r1);
         testList.addExistingRestaurant(r2);
         testList.addExistingRestaurant(r3);
+        testList.sortRatings();
         assertEquals(r3, testList.getRestaurants().get(0));
         assertEquals(r1, testList.getRestaurants().get(1));
         assertEquals(r2, testList.getRestaurants().get(2));
+    }
+
+    @Test
+    public void sortRestaurantPricesTest() {
+        Restaurant r1 = new Restaurant("Nook");
+        r1.setPricing("$");
+        Restaurant r2 = new Restaurant("OEB Breakfast");
+        r2.setPricing("$$");
+        Restaurant r3 = new Restaurant("Sura");
+        r3.setPricing("$$$");
+        Restaurant r4 = new Restaurant("McDonald's");
+        r4.setPricing("$");
+        testList.addExistingRestaurant(r1);
+        testList.addExistingRestaurant(r2);
+        testList.addExistingRestaurant(r3);
+        testList.addExistingRestaurant(r4);
+        testList.sortPrices();
+        assertEquals(r1, testList.getRestaurants().get(0));
+        assertEquals(r4, testList.getRestaurants().get(1));
+        assertEquals(r2, testList.getRestaurants().get(2));
+        assertEquals(r3, testList.getRestaurants().get(3));
     }
 
     @Test
@@ -134,6 +156,15 @@ class ListOfRestaurantTest {
         ArrayList<Restaurant> filteredList = testList.filterCuisine("Breakfast");
         assertEquals(1, filteredList.size());
         assertEquals(r2, filteredList.get(0));
+    }
+
+    @Test
+    public void randomRestaurantTest() {
+        testList.addNewRestaurant("Nook");
+        testList.addNewRestaurant("OEB Breakfast");
+        testList.removeRestaurant("Nook");
+        Restaurant random = testList.randomRestaurant();
+        assertTrue(testList.getRestaurants().contains(random));
     }
 
 }
