@@ -1,20 +1,47 @@
 package model;
 
-// class-level comment?
+/*
+ * A restaurant with a name, rating, cuisine, pricing, and business hours.
+ */
+
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Restaurant {
     private String name;
     private int rating;
     private String cuisine;
     private String pricing;
-    // open hours field
+    private List<BusinessHours> hours;
 
-    // EFFECTS: create a new restaurant with 0 rating, no cuisine, and no pricing
+    // EFFECTS: create a new restaurant with 0 rating, no cuisine, no pricing, and an empty business hours list
     public Restaurant(String name) {
         this.name = name;
         this.rating = 0;
         this.cuisine = "";
         this.pricing = "";
+        this.hours = new ArrayList<>();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adds a day of the week's open hours
+    public void addHours(BusinessHours newHour) {
+        hours.add(newHour);
+    }
+
+    // EFFECTS: return true if the restaurant is open at the time given
+    public Boolean isOpen(LocalDateTime currentTime) {
+        DayOfWeek dayOfWeek = currentTime.getDayOfWeek();
+        LocalTime time = currentTime.toLocalTime();
+        for (BusinessHours h : hours) {
+            if (dayOfWeek.equals(h.getDayOfWeek())) {
+                return time.isAfter(h.getOpeningHours()) && time.isBefore(h.getClosingHours());
+            }
+        }
+        return false;
     }
 
     // REQUIRES: [0,10]
@@ -55,6 +82,10 @@ public class Restaurant {
     // EFFECTS: get name of this
     public String getName() {
         return name;
+    }
+
+    public List<BusinessHours> getHours() {
+        return hours;
     }
 
 }

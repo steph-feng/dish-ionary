@@ -1,5 +1,10 @@
 package model;
 
+/*
+ * A collection of Restaurant
+ */
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -52,7 +57,7 @@ public class ListOfRestaurant {
     // REQUIRES: one of $, $$, $$$, $$$$
     // EFFECTS: filter restaurant prices to only show restaurants that are at given price
     public ArrayList<Restaurant> filterPrices(String s) {
-        ArrayList<Restaurant> filteredList = new ArrayList();
+        ArrayList<Restaurant> filteredList = new ArrayList<>();
         for (Restaurant r: restaurants) {
             if (r.getPricing() == s) {
                 filteredList.add(r);
@@ -64,7 +69,7 @@ public class ListOfRestaurant {
     // REQUIRES: [0,10]
     // EFFECTS: filter restaurant ratings to only show restaurants that have rating >= given rating
     public ArrayList<Restaurant> filterRatings(int rating) {
-        ArrayList<Restaurant> filteredList = new ArrayList();
+        ArrayList<Restaurant> filteredList = new ArrayList<>();
         for (Restaurant r : restaurants) {
             if (r.getRating() >= rating) {
                 filteredList.add(r);
@@ -75,7 +80,7 @@ public class ListOfRestaurant {
 
     // EFFECTS: filter restaurant ratings to only show restaurant names that meet given cuisine
     public ArrayList<Restaurant> filterCuisine(String s) {
-        ArrayList<Restaurant> filteredList = new ArrayList();
+        ArrayList<Restaurant> filteredList = new ArrayList<>();
         for (Restaurant r : restaurants) {
             if (r.getCuisine() == s) {
                 filteredList.add(r);
@@ -83,6 +88,18 @@ public class ListOfRestaurant {
         }
         return filteredList;
     }
+
+    // EFFECTS: filter restaurants, only returning restaurants that are open at the time given
+    public ArrayList<Restaurant> filterOpenHours(LocalDateTime currentTime) {
+        ArrayList<Restaurant> filteredList = new ArrayList<>();
+        for (Restaurant r : restaurants) {
+            if (r.isOpen(currentTime)) {
+                filteredList.add(r);
+            }
+        }
+        return filteredList;
+    }
+
 
     // EFFECTS: return random restaurant from list
     public Restaurant randomRestaurant() {

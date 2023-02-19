@@ -3,6 +3,7 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -77,13 +78,17 @@ class ListOfRestaurantTest {
         r2.setRating(7);
         Restaurant r3 = new Restaurant("Sura");
         r3.setRating(9);
+        Restaurant r4 = new Restaurant("Miku");
+        r4.setRating(8);
         testList.addExistingRestaurant(r1);
         testList.addExistingRestaurant(r2);
         testList.addExistingRestaurant(r3);
+        testList.addExistingRestaurant(r4);
         testList.sortRatings();
         assertEquals(r3, testList.getRestaurants().get(0));
         assertEquals(r1, testList.getRestaurants().get(1));
-        assertEquals(r2, testList.getRestaurants().get(2));
+        assertEquals(r4, testList.getRestaurants().get(2));
+        assertEquals(r2, testList.getRestaurants().get(3));
     }
 
     @Test
@@ -96,15 +101,19 @@ class ListOfRestaurantTest {
         r3.setPricing("$$$");
         Restaurant r4 = new Restaurant("McDonald's");
         r4.setPricing("$");
+        Restaurant r5 = new Restaurant("Miku");
+        r5.setPricing("$$$$");
         testList.addExistingRestaurant(r1);
         testList.addExistingRestaurant(r2);
         testList.addExistingRestaurant(r3);
         testList.addExistingRestaurant(r4);
+        testList.addExistingRestaurant(r5);
         testList.sortPrices();
         assertEquals(r1, testList.getRestaurants().get(0));
         assertEquals(r4, testList.getRestaurants().get(1));
         assertEquals(r2, testList.getRestaurants().get(2));
         assertEquals(r3, testList.getRestaurants().get(3));
+        assertEquals(r5, testList.getRestaurants().get(4));
     }
 
     @Test
@@ -154,6 +163,24 @@ class ListOfRestaurantTest {
         testList.addExistingRestaurant(r2);
         testList.addExistingRestaurant(r3);
         ArrayList<Restaurant> filteredList = testList.filterCuisine("Breakfast");
+        assertEquals(1, filteredList.size());
+        assertEquals(r2, filteredList.get(0));
+    }
+
+    @Test
+    public void filterOpenRestaurantsTest() {
+        Restaurant r1 = new Restaurant("Nook");
+        BusinessHours r1Hour =
+                new BusinessHours(1, 9, 30, 15, 0);
+        r1.addHours(r1Hour);
+        Restaurant r2 = new Restaurant("OEB Breakfast");
+        BusinessHours r2Hour =
+                new BusinessHours(6, 9, 30, 20, 0);
+        r2.addHours(r2Hour);
+        testList.addExistingRestaurant(r1);
+        testList.addExistingRestaurant(r2);
+        LocalDateTime time = LocalDateTime.of(2023, 2, 18, 17, 30);
+        ArrayList<Restaurant> filteredList = testList.filterOpenHours(time);
         assertEquals(1, filteredList.size());
         assertEquals(r2, filteredList.get(0));
     }
