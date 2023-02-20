@@ -2,8 +2,13 @@ package model;
 
 import java.util.Comparator;
 
+/*
+ * Comparator for restaurant prices
+ */
+
 public class RestaurantPriceComparator implements Comparator<Restaurant> {
 
+    // EFFECTS: compares two restaurant prices in ascending order
     @Override
     public int compare(Restaurant r1, Restaurant r2) {
         int r1Price = setPrice(r1);
@@ -17,6 +22,7 @@ public class RestaurantPriceComparator implements Comparator<Restaurant> {
         }
     }
 
+    // EFFECTS: helper to turn string into corresponding integer
     private int setPrice(Restaurant r) {
         if (r.getPricing().equals("$")) {
             return 1;

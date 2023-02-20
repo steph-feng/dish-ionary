@@ -34,7 +34,7 @@ public class ListOfRestaurant {
     public void removeRestaurant(String restaurantName) {
         int counter = 0;
         for (Restaurant r : restaurants) {
-            if (r.getName() == restaurantName) {
+            if (r.getName().equals(restaurantName)) {
                 restaurants.remove(counter);
             }
             counter = counter + 1;
@@ -59,7 +59,7 @@ public class ListOfRestaurant {
     public ArrayList<Restaurant> filterPrices(String s) {
         ArrayList<Restaurant> filteredList = new ArrayList<>();
         for (Restaurant r: restaurants) {
-            if (r.getPricing() == s) {
+            if (r.getPricing().equals(s)) {
                 filteredList.add(r);
             }
         }
@@ -82,7 +82,7 @@ public class ListOfRestaurant {
     public ArrayList<Restaurant> filterCuisine(String s) {
         ArrayList<Restaurant> filteredList = new ArrayList<>();
         for (Restaurant r : restaurants) {
-            if (r.getCuisine() == s) {
+            if (r.getCuisine().equals(s)) {
                 filteredList.add(r);
             }
         }
