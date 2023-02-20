@@ -8,7 +8,7 @@ any person looking to systematically organize their next meal.
 
 This project interests me because my favourite thing about Vancouver is the number of restaurants to choose 
 from. At the same time, I am indecisive and forgetful of where I've enjoyed eating at. This application will solve 
-both problems, allowing me to sort through restaurants and search for the next one to eat at.  
+both problems, allowing me to save, categroize, and search for the next restaurant to reccomend or eat at.  
 
 ### User Stories
 - As a user, I want to be able to add a restaurant to a collection.
@@ -19,6 +19,7 @@ both problems, allowing me to sort through restaurants and search for the next o
 - As a user, I want to be able to select a restaurant and add the cuisine it serves.
 - As a user, I want to be able to select a restaurant and add its pricing on a scale of $ to $$$.
 - As a user, I want to be able to find a restaurant that is open at the time I am using the application.
+- As a user, I want to be able to find a restaurant that is open at a given time.
 - As a user, I want to be able to sort a collection of restaurants based on some criteria, such as pricing and/or rating.
 - As a user, I want to be able to filter a collection based on some criteria, such as pricing, rating, and/or cuisine.
 - As a user, I want to get a random restaurant from a collection.
