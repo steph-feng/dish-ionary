@@ -1,14 +1,14 @@
 package model;
 
-/*
- * A restaurant with a name, rating, cuisine, pricing, and business hours.
- */
-
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+
+/*
+ * A restaurant with a name, rating, cuisine, pricing, and business hours.
+ */
 
 public class Restaurant {
     private String name;

@@ -1,13 +1,13 @@
 package model;
 
-/*
- * A collection of Restaurant
- */
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+
+/*
+ * A collection of Restaurant
+ */
 
 public class ListOfRestaurant {
     private ArrayList<Restaurant> restaurants;

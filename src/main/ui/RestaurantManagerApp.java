@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /*
- * The restaurant manager application
+ * Restaurant manager application
+ * Attribution: class structure inspired by TellerApp
  */
 
 public class RestaurantManagerApp {
@@ -250,15 +251,19 @@ public class RestaurantManagerApp {
 
     // EFFECTS: helper to display restaurant names and details of given list
     private void displayRestaurants(ArrayList<Restaurant> restaurants) {
-        for (Restaurant r : restaurants) {
-            System.out.println("Restaurant: " + r.getName());
-            System.out.println("\tRating: " + r.getRating());
-            System.out.println("\tPricing: " + r.getPricing());
-            System.out.println("\tCuisine: " + r.getCuisine());
-            System.out.println("\tBusiness Hours: ");
-            for (BusinessHours b : r.getHours()) {
-                System.out.println("\t\t" + b.getDayOfWeek() + ": " + b.getOpeningHours()
-                        + " - " + b.getClosingHours());
+        if (restaurants.size() == 0) {
+            System.out.println("There are no restaurants that meet the given criteria.");
+        } else {
+            for (Restaurant r : restaurants) {
+                System.out.println("Restaurant: " + r.getName());
+                System.out.println("\tRating: " + r.getRating());
+                System.out.println("\tPricing: " + r.getPricing());
+                System.out.println("\tCuisine: " + r.getCuisine());
+                System.out.println("\tBusiness Hours: ");
+                for (BusinessHours b : r.getHours()) {
+                    System.out.println("\t\t" + b.getDayOfWeek() + ": " + b.getOpeningHours()
+                            + " - " + b.getClosingHours());
+                }
             }
         }
     }
