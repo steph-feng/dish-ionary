@@ -60,6 +60,15 @@ class ListOfRestaurantTest {
     }
 
     @Test
+    public void removeRestaurantEndOfListTest() {
+        testList.addNewRestaurant("Nook");
+        testList.addNewRestaurant("OEB Breakfast");
+        testList.removeRestaurant("OEB Breakfast");
+        assertEquals(1, testList.getRestaurants().size());
+        assertEquals("Nook", testList.getRestaurants().get(0).getName());
+    }
+
+    @Test
     public void getRestaurantNamesTest() {
         Restaurant r1 = new Restaurant("Nook");
         Restaurant r2 = new Restaurant("OEB Breakfast");

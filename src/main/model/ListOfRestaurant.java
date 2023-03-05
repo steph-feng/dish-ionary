@@ -3,6 +3,7 @@ package model;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.Random;
 
 /*
@@ -33,11 +34,11 @@ public class ListOfRestaurant {
     // EFFECTS: removes given restaurant from this
     public void removeRestaurant(String restaurantName) {
         int counter = 0;
-        for (Restaurant r : restaurants) {
+        for (Iterator<Restaurant> iterator = restaurants.iterator(); iterator.hasNext(); ) {
+            Restaurant r = iterator.next();
             if (r.getName().equals(restaurantName)) {
-                restaurants.remove(counter);
+                iterator.remove();
             }
-            counter = counter + 1;
         }
     }
 
@@ -58,7 +59,7 @@ public class ListOfRestaurant {
     // EFFECTS: filter restaurant prices to only show restaurants that are at given price
     public ArrayList<Restaurant> filterPrices(String s) {
         ArrayList<Restaurant> filteredList = new ArrayList<>();
-        for (Restaurant r: restaurants) {
+        for (Restaurant r : restaurants) {
             if (r.getPricing().equals(s)) {
                 filteredList.add(r);
             }
