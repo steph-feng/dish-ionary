@@ -128,6 +128,7 @@ public class ListOfRestaurant implements Writable {
         return restaurantNames;
     }
 
+    // EFFECTS: returns ListOfRestaurant as a JSONObject
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -135,7 +136,7 @@ public class ListOfRestaurant implements Writable {
         return json;
     }
 
-    // EFFECTS: returns restaurants in list as a JSON array
+    // EFFECTS: returns restaurants in list as a JSONArray
     private JSONArray restaurantsToJson() {
         JSONArray jsonArray = new JSONArray();
         for (Restaurant r : restaurants) {

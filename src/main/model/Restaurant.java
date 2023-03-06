@@ -88,10 +88,12 @@ public class Restaurant implements Writable {
         return name;
     }
 
+    // EFFECTS: get list of BusinessHours of this
     public List<BusinessHours> getHours() {
         return hours;
     }
 
+    // EFFECTS: returns Restaurant as a JSONObject
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

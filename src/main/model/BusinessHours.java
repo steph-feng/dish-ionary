@@ -37,6 +37,7 @@ public class BusinessHours implements Writable {
         return closingHours;
     }
 
+    // EFFECTS: returns BusinessHours as a JSONObject
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
