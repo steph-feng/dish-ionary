@@ -37,7 +37,6 @@ public class ListOfRestaurant implements Writable {
     // MODIFIES: this
     // EFFECTS: removes given restaurant from this
     public void removeRestaurant(String restaurantName) {
-        int counter = 0;
         for (Iterator<Restaurant> iterator = restaurants.iterator(); iterator.hasNext(); ) {
             Restaurant r = iterator.next();
             if (r.getName().equals(restaurantName)) {

@@ -230,15 +230,19 @@ public class RestaurantManagerApp {
 
     // EFFECTS: displays all restaurant names and details in the collection
     public void viewRestaurants() {
-        for (Restaurant r : restaurantCollection.getRestaurants()) {
-            System.out.println("Restaurant: " + r.getName());
-            System.out.println("\tRating: " + r.getRating());
-            System.out.println("\tPricing: " + r.getPricing());
-            System.out.println("\tCuisine: " + r.getCuisine());
-            System.out.println("\tBusiness Hours: ");
-            for (BusinessHours b : r.getHours()) {
-                System.out.println("\t\t" + b.getDayOfWeek() + ": "
-                        + b.getOpeningHours() + " - " + b.getClosingHours());
+        if (restaurantCollection.getRestaurants().size() == 0) {
+            System.out.println("There are no restaurants in the collection.");
+        } else {
+            for (Restaurant r : restaurantCollection.getRestaurants()) {
+                System.out.println("Restaurant: " + r.getName());
+                System.out.println("\tRating: " + r.getRating());
+                System.out.println("\tPricing: " + r.getPricing());
+                System.out.println("\tCuisine: " + r.getCuisine());
+                System.out.println("\tBusiness Hours: ");
+                for (BusinessHours b : r.getHours()) {
+                    System.out.println("\t\t" + b.getDayOfWeek() + ": "
+                            + b.getOpeningHours() + " - " + b.getClosingHours());
+                }
             }
         }
     }
@@ -349,14 +353,26 @@ public class RestaurantManagerApp {
         }
     }
 
+    // MODIFIES: this
     // EFFECTS: removes restaurant and displays the restaurants left in the collection
+    //          does nothing if input is invalid
     public void doRemoveRestaurant() {
         System.out.println("Enter the name of the restaurant you would like to remove");
         String removedRestaurant = input.next();
+        int sizeBeforeRemoval = restaurantCollection.getRestaurants().size();
         restaurantCollection.removeRestaurant(removedRestaurant);
-        System.out.println(removedRestaurant + " has been removed. The restaurants now in the collection are:");
-        viewRestaurants();
-
+        int sizeAfterRemoval = restaurantCollection.getRestaurants().size();
+        if (sizeAfterRemoval < sizeBeforeRemoval) {
+            System.out.println(removedRestaurant + " has been removed.");
+            if (restaurantCollection.getRestaurants().size() == 0) {
+                System.out.println("There are no restaurants left in the collection.");
+            } else {
+                System.out.println("The restaurants left in the collection are:");
+                viewRestaurants();
+            }
+        } else {
+            System.out.println("There is no restaurant with that name in the collection, no restaurant was removed.");
+        }
     }
 
     // EFFECTS: displays a random restaurant from the list
