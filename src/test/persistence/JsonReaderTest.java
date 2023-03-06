@@ -1,6 +1,5 @@
 package persistence;
 
-import model.BusinessHours;
 import model.ListOfRestaurant;
 import org.junit.jupiter.api.Test;
 

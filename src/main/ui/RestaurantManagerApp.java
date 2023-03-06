@@ -3,24 +3,32 @@ package ui;
 import model.BusinessHours;
 import model.ListOfRestaurant;
 import model.Restaurant;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 /*
  * Restaurant manager application
- * Attribution: class structure inspired by TellerApp
+ * Attribution: class structure inspired by TellerApp, data persistence inspired by JsonSerializationDemo
  */
 
 public class RestaurantManagerApp {
+    private static final String JSON_STORE = "./data/restaurantCollection.json";
     private Scanner input;
     private ListOfRestaurant restaurantCollection;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the application
     public RestaurantManagerApp() {
         restaurantCollection = new ListOfRestaurant();
         input = new Scanner(System.in);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
 
         boolean continueRunning = true;
         String userInput = null;
@@ -46,6 +54,8 @@ public class RestaurantManagerApp {
         System.out.println("\nSelect one of the following:");
         System.out.println("\t\"add\" to add a restaurant to your collection");
         System.out.println("\t\"find\" to access your restaurant collection");
+        System.out.println("\t\"load\" to load previous restaurant collection from file");
+        System.out.println("\t\"save\" to save current restaurant collection to file");
         System.out.println("\t\"quit\" to exit the application");
     }
 
@@ -63,10 +73,15 @@ public class RestaurantManagerApp {
             System.out.println("\t\"random\" to get a random restaurant recommendation");
             String nextInput = input.next();
             processAccessRestaurantsInput(nextInput);
+        } else if (userInput.equals("load")) {
+            loadRestaurantCollection();
+        } else if (userInput.equals("save")) {
+            saveRestaurantCollection();
         } else {
             System.out.println("Selection invalid, please try again.");
         }
     }
+
 
     // EFFECTS: adds a restaurant to the list
     public void addRestaurant() {
@@ -350,5 +365,26 @@ public class RestaurantManagerApp {
 
     }
 
+    // MODIFIES: restaurantCollection
+    // EFFECTS: loads restaurant collection from file
+    public void loadRestaurantCollection() {
+        try {
+            restaurantCollection = jsonReader.read();
+            System.out.println("Loaded restaurants from: " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to load file");
+        }
+    }
 
+    // EFFECTS: saves RestaurantCollection to file
+    public void saveRestaurantCollection() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(restaurantCollection);
+            jsonWriter.close();
+            System.out.println("Successfully saved restaurant collection to: " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Failed to save to file");
+        }
+    }
 }
