@@ -1,5 +1,9 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -10,7 +14,7 @@ import java.util.List;
  * A restaurant with a name, rating, cuisine, pricing, and business hours.
  */
 
-public class Restaurant {
+public class Restaurant implements Writable {
     private String name;
     private int rating;
     private String cuisine;
@@ -88,4 +92,23 @@ public class Restaurant {
         return hours;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("rating", rating);
+        json.put("cuisine", cuisine);
+        json.put("pricing", pricing);
+        json.put("hours", hoursToJson());
+        return json;
+    }
+
+    // EFFECTS: returns BusinessHours in list as JSONArray
+    private JSONArray hoursToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (BusinessHours h : hours) {
+            jsonArray.put(h.toJson());
+        }
+        return jsonArray;
+    }
 }

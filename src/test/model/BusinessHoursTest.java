@@ -17,7 +17,7 @@ class BusinessHoursTest {
 
     @BeforeEach
     public void setUp() {
-        testHours = new BusinessHours(1, 12, 0, 0, 0);
+        testHours = new BusinessHours(1, "12:00", "00:00");
     }
 
     @Test

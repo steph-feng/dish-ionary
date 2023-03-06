@@ -144,17 +144,17 @@ public class RestaurantManagerApp {
 
     // EFFECTS: helper to get user input for the hours each day
     private BusinessHours addHoursOfDay(String s) {
-        System.out.println("At what hour does the restaurant open on " + s + "? Enter a number between 0 and 23.");
-        int openHour = Integer.parseInt(input.next());
-        System.out.println("At what minute does the restaurant open on " + s + "? Enter a number between 0 and 60.");
-        int openMin = Integer.parseInt(input.next());
-        System.out.println("At what hour does the restaurant close on " + s + "? Enter a number between 0 and 23.");
-        int closeHour = Integer.parseInt(input.next());
-        System.out.println("At what minute does the restaurant close on " + s + "? Enter a number between 0 and 60.");
-        int closeMin = Integer.parseInt(input.next());
+        System.out.println("At what time does the restaurant open on " + s + "?");
+        System.out.println("Enter a number in the format XX:YY, where XX is between [00,23] and YY is between [00,60]."
+                + " XX and YY must both be two digits long.");
+        String openHour = input.next();
+        System.out.println("At what hour does the restaurant close on " + s + "?");
+        System.out.println("Enter a number in the format XX:YY, where XX is between [00,23] and YY is between [00,60]."
+                + " XX and YY must both be two digits long.");
+        String closeHour = input.next();
 
         int day = dayToInt(s);
-        BusinessHours hoursOfDay = new BusinessHours(day, openHour, openMin, closeHour, closeMin);
+        BusinessHours hoursOfDay = new BusinessHours(day, openHour, closeHour);
 
         return hoursOfDay;
     }

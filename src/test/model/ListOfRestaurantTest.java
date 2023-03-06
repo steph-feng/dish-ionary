@@ -184,11 +184,11 @@ class ListOfRestaurantTest {
     public void filterOpenRestaurantsTest() {
         Restaurant r1 = new Restaurant("Nook");
         BusinessHours r1Hour =
-                new BusinessHours(1, 9, 30, 15, 0);
+                new BusinessHours(1, "09:30", "15:00");
         r1.addHours(r1Hour);
         Restaurant r2 = new Restaurant("OEB Breakfast");
         BusinessHours r2Hour =
-                new BusinessHours(6, 9, 30, 20, 0);
+                new BusinessHours(6, "09:30", "20:00");
         r2.addHours(r2Hour);
         testList.addExistingRestaurant(r1);
         testList.addExistingRestaurant(r2);

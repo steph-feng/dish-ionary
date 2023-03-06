@@ -46,7 +46,7 @@ class RestaurantTest {
 
     @Test
     public void addHoursTest() {
-        BusinessHours newHour = new BusinessHours(1, 9, 30, 5, 0);
+        BusinessHours newHour = new BusinessHours(1, "09:30", "17:00");
         testRestaurant.addHours(newHour);
         assertEquals(newHour, testRestaurant.getHours().get(0));
 
@@ -56,9 +56,9 @@ class RestaurantTest {
     public void isOpenSuccessTest() {
         LocalDateTime time = LocalDateTime.of(2023, 2, 18, 17, 30);
         BusinessHours mondayHour =
-                new BusinessHours(1, 9, 30, 15, 0);
+                new BusinessHours(1, "09:30", "15:00");
         BusinessHours saturdayHour =
-                new BusinessHours(6, 9, 30, 20, 0);
+                new BusinessHours(6, "09:30", "20:00");
         testRestaurant.addHours(mondayHour);
         testRestaurant.addHours(saturdayHour);
         assertTrue(testRestaurant.isOpen(time));
@@ -68,9 +68,9 @@ class RestaurantTest {
     public void isOpenNotOpenAfterTimeTest() {
         LocalDateTime time = LocalDateTime.of(2023, 2, 6, 17, 30);
         BusinessHours mondayHour =
-                new BusinessHours(1, 9, 30, 15, 0);
+                new BusinessHours(1, "09:30", "15:00");
         BusinessHours saturdayHour =
-                new BusinessHours(6, 9, 30, 20, 0);
+                new BusinessHours(6, "09:30", "20:00");
         testRestaurant.addHours(mondayHour);
         testRestaurant.addHours(saturdayHour);
         assertFalse(testRestaurant.isOpen(time));
@@ -80,9 +80,9 @@ class RestaurantTest {
     public void isOpenNotOpenAfterBoundaryTimeTest() {
         LocalDateTime time = LocalDateTime.of(2023, 2, 6, 15, 00);
         BusinessHours mondayHour =
-                new BusinessHours(1, 9, 30, 15, 0);
+                new BusinessHours(1, "09:30", "15:00");
         BusinessHours saturdayHour =
-                new BusinessHours(6, 9, 30, 20, 0);
+                new BusinessHours(6, "09:30", "20:00");
         testRestaurant.addHours(mondayHour);
         testRestaurant.addHours(saturdayHour);
         assertFalse(testRestaurant.isOpen(time));
@@ -92,9 +92,9 @@ class RestaurantTest {
     public void isOpenNotOpenBeforeTimeTest() {
         LocalDateTime time = LocalDateTime.of(2023, 2, 18, 8, 30);
         BusinessHours mondayHour =
-                new BusinessHours(1, 9, 30, 15, 0);
+                new BusinessHours(1, "09:30", "15:00");
         BusinessHours saturdayHour =
-                new BusinessHours(6, 9, 30, 20, 0);
+                new BusinessHours(6, "09:30", "20:00");
         testRestaurant.addHours(mondayHour);
         testRestaurant.addHours(saturdayHour);
         assertFalse(testRestaurant.isOpen(time));
@@ -104,9 +104,9 @@ class RestaurantTest {
     public void isOpenNotOpenBeforeBoundaryTimeTest() {
         LocalDateTime time = LocalDateTime.of(2023, 2, 18, 9, 30);
         BusinessHours mondayHour =
-                new BusinessHours(1, 9, 30, 15, 0);
+                new BusinessHours(1, "09:30", "15:00");
         BusinessHours saturdayHour =
-                new BusinessHours(6, 9, 30, 20, 0);
+                new BusinessHours(6, "09:30", "20:00");
         testRestaurant.addHours(mondayHour);
         testRestaurant.addHours(saturdayHour);
         assertFalse(testRestaurant.isOpen(time));
@@ -116,9 +116,9 @@ class RestaurantTest {
     public void isOpenNotOpenDayTest() {
         LocalDateTime time = LocalDateTime.of(2023, 2, 7, 17, 30);
         BusinessHours mondayHour =
-                new BusinessHours(1, 9, 30, 15, 0);
+                new BusinessHours(1, "09:30", "15:00");
         BusinessHours saturdayHour =
-                new BusinessHours(6, 9, 30, 20, 0);
+                new BusinessHours(6, "09:30", "20:00");
         testRestaurant.addHours(mondayHour);
         testRestaurant.addHours(saturdayHour);
         assertFalse(testRestaurant.isOpen(time));

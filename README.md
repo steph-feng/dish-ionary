@@ -23,3 +23,5 @@ both problems, allowing me to save, categroize, and search for the next restaura
 - As a user, I want to be able to sort a collection of restaurants based on some criteria, such as pricing and/or rating.
 - As a user, I want to be able to filter a collection based on some criteria, such as pricing, rating, and/or cuisine.
 - As a user, I want to get a random restaurant from a collection.
+- As a user, I want to have the option to save my restaurant collection to file before I quit.
+- As a user, I want to have the option to load my restaurant collection from file to resume from where I left off.

@@ -1,5 +1,9 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,7 +14,7 @@ import java.util.Random;
  * A collection of Restaurant
  */
 
-public class ListOfRestaurant {
+public class ListOfRestaurant implements Writable {
     private ArrayList<Restaurant> restaurants;
 
     public ListOfRestaurant() {
@@ -124,4 +128,19 @@ public class ListOfRestaurant {
         return restaurantNames;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("restaurants", restaurantsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns restaurants in list as a JSON array
+    private JSONArray restaurantsToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Restaurant r : restaurants) {
+            jsonArray.put(r.toJson());
+        }
+        return jsonArray;
+    }
 }
