@@ -6,6 +6,7 @@ import model.Restaurant;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class RestaurantManagerApp {
     private JsonReader jsonReader;
 
     // EFFECTS: runs the application
-    public RestaurantManagerApp() {
+    public RestaurantManagerApp() throws FileNotFoundException {
         restaurantCollection = new ListOfRestaurant();
         input = new Scanner(System.in);
         jsonWriter = new JsonWriter(JSON_STORE);
@@ -372,7 +373,7 @@ public class RestaurantManagerApp {
             restaurantCollection = jsonReader.read();
             System.out.println("Loaded restaurants from: " + JSON_STORE);
         } catch (IOException e) {
-            System.out.println("Unable to load file");
+            System.out.println("Failed to load file");
         }
     }
 
