@@ -314,7 +314,7 @@ public class RestaurantManagerApp {
             int year = Integer.parseInt(input.next());
             System.out.println("Enter the month as a number between 1 and 12");
             int month = Integer.parseInt(input.next());
-            System.out.println("Enter the data as a number between 1 and 31");
+            System.out.println("Enter the date as a number between 1 and 31");
             int date = Integer.parseInt(input.next());
             System.out.println("Enter the hour as a number between 0 and 23");
             int hour = Integer.parseInt(input.next());
