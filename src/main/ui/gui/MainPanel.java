@@ -1,10 +1,11 @@
-package ui;
+package ui.gui;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class MainPanel implements ActionListener {
     private JPanel mainPanel;
@@ -54,7 +55,16 @@ public class MainPanel implements ActionListener {
         if (actionSource == findButton) {
             app.switchToFindPanel();
         }
+        if (actionSource == loadButton) {
+            app.loadRestaurantCollection();
+            app.switchToLoadPanel();
+        }
+        if (actionSource == saveButton) {
+            app.saveRestaurantCollection();
+            app.switchToSavePanel();
+        }
     }
+
 
     public JPanel getMainPanel() {
         return mainPanel;

@@ -4,7 +4,7 @@ package ui;
  * Runs RestaurantManagerApp
  */
 
-import java.io.FileNotFoundException;
+import ui.gui.RestaurantManagerApp;
 
 //public class Main {
 //    // EFFECTS: initializes new restaurant manager application

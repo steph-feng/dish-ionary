@@ -1,6 +1,7 @@
-package ui;
+package ui.gui;
 
 import model.BusinessHours;
+import model.ListOfRestaurant;
 import model.Restaurant;
 
 import javax.swing.*;
@@ -17,7 +18,7 @@ public class DisplayPanel implements ActionListener {
     private JPanel homeButtonPanel;
     private JButton homeButton;
     private RestaurantManagerApp app;
-    private ArrayList<Restaurant> restaurants;
+    private ListOfRestaurant restaurants;
 
     public DisplayPanel(RestaurantManagerApp app) {
         this.app = app;
@@ -43,7 +44,7 @@ public class DisplayPanel implements ActionListener {
     }
 
     private void displayRestaurants() {
-        for (Restaurant r : restaurants) {
+        for (Restaurant r : restaurants.getRestaurants()) {
             JPanel newPanel = new JPanel(new GridLayout(12, 1));
             newPanel.setBackground(new Color(201, 235, 211));
             newPanel.setBorder(new EmptyBorder(20, 20, 20, 20));

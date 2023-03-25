@@ -1,4 +1,4 @@
-package ui;
+package ui.gui;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,21 +38,27 @@ public class FindPanel implements ActionListener {
     private void addElementsToButtonPanel() {
         modifyButton = new JButton("Modify Existing Restaurant in Collection");
         modifyButton.addActionListener(this);
+        modifyButton.setPreferredSize(new Dimension(300,100));
         buttonPanel.add(modifyButton);
         displayButton = new JButton("Display Restaurants in Collection");
         displayButton.addActionListener(this);
+        displayButton.setPreferredSize(new Dimension(300,100));
         buttonPanel.add(displayButton);
         filterButton = new JButton("Filter Restaurant Collection");
         filterButton.addActionListener(this);
+        filterButton.setPreferredSize(new Dimension(300,100));
         buttonPanel.add(filterButton);
         sortButton = new JButton("Sort Restaurant Collection");
         sortButton.addActionListener(this);
+        sortButton.setPreferredSize(new Dimension(300,100));
         buttonPanel.add(sortButton);
         removeButton = new JButton("Remove a Restaurant from the Collection");
         removeButton.addActionListener(this);
+        removeButton.setPreferredSize(new Dimension(300,100));
         buttonPanel.add(removeButton);
         randomButton = new JButton("Get a Random Restaurant Recommendation");
         randomButton.addActionListener(this);
+        randomButton.setPreferredSize(new Dimension(300,100));
         buttonPanel.add(randomButton);
     }
 
