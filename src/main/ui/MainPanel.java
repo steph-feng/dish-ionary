@@ -51,6 +51,9 @@ public class MainPanel implements ActionListener {
         if (actionSource == addButton) {
             app.switchToAddPanel();
         }
+        if (actionSource == findButton) {
+            app.switchToFindPanel();
+        }
     }
 
     public JPanel getMainPanel() {

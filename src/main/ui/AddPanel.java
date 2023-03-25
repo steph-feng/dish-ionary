@@ -11,8 +11,8 @@ import java.awt.event.ActionListener;
 public class AddPanel implements ActionListener {
     private JSplitPane split;
     private JPanel detailsPanel;
-    private BusinessHoursPanel businessHoursPanel;
     private RestaurantManagerApp app;
+    private BusinessHoursPanel businessHoursPanel;
     private JButton saveRestaurantDetailsButton;
     private JTextField nameField;
     private JComboBox ratingField;
@@ -78,13 +78,23 @@ public class AddPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JButton actionSource = (JButton) e.getSource();
         if (actionSource == saveRestaurantDetailsButton) {
-            newestRestaurant = new Restaurant(nameField.getText().toUpperCase());
+            newestRestaurant = new Restaurant(nameField.getText());
+            nameField.setText("");
+
             Integer chosenRating = Integer.parseInt((String) ratingField.getSelectedItem());
             newestRestaurant.setRating(chosenRating);
-            newestRestaurant.setCuisine(cuisineField.getText().toUpperCase());
+            ratingField.setSelectedIndex(0);
+
+            newestRestaurant.setCuisine(cuisineField.getText());
+            cuisineField.setText("");
+
             String chosenPricing = (String) pricingField.getSelectedItem();
             newestRestaurant.setPricing(chosenPricing);
+            pricingField.setSelectedIndex(0);
+
             addBusinessHours();
+
+            app.addRestaurantToCollection();
             app.switchToMainPanel();
         }
     }

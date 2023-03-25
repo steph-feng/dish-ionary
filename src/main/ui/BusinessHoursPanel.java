@@ -103,6 +103,9 @@ public class BusinessHoursPanel {
         String open = (String) mondayOpen.getSelectedItem();
         String close = (String) mondayClose.getSelectedItem();
         BusinessHours hours = new BusinessHours(1, open, close);
+
+        mondayOpen.setSelectedIndex(0);
+        mondayClose.setSelectedIndex(0);
         return hours;
     }
 
@@ -110,41 +113,59 @@ public class BusinessHoursPanel {
         String open = (String) tuesdayOpen.getSelectedItem();
         String close = (String) tuesdayClose.getSelectedItem();
         BusinessHours hours = new BusinessHours(2, open, close);
+
+        tuesdayOpen.setSelectedIndex(0);
+        tuesdayClose.setSelectedIndex(0);
         return hours;
     }
 
     public BusinessHours getWednesdayHours() {
         String open = (String) wednesdayOpen.getSelectedItem();
         String close = (String) wednesdayClose.getSelectedItem();
-        BusinessHours hours = new BusinessHours(2, open, close);
+        BusinessHours hours = new BusinessHours(3, open, close);
+
+        wednesdayOpen.setSelectedIndex(0);
+        wednesdayClose.setSelectedIndex(0);
         return hours;
     }
 
     public BusinessHours getThursdayHours() {
         String open = (String) thursdayOpen.getSelectedItem();
         String close = (String) thursdayClose.getSelectedItem();
-        BusinessHours hours = new BusinessHours(2, open, close);
+        BusinessHours hours = new BusinessHours(4, open, close);
+
+        thursdayOpen.setSelectedIndex(0);
+        thursdayClose.setSelectedIndex(0);
         return hours;
     }
 
     public BusinessHours getFridayHours() {
         String open = (String) fridayOpen.getSelectedItem();
         String close = (String) fridayClose.getSelectedItem();
-        BusinessHours hours = new BusinessHours(2, open, close);
+        BusinessHours hours = new BusinessHours(5, open, close);
+
+        fridayOpen.setSelectedIndex(0);
+        fridayClose.setSelectedIndex(0);
         return hours;
     }
 
     public BusinessHours getSaturdayHours() {
         String open = (String) saturdayOpen.getSelectedItem();
         String close = (String) saturdayClose.getSelectedItem();
-        BusinessHours hours = new BusinessHours(2, open, close);
+        BusinessHours hours = new BusinessHours(6, open, close);
+
+        saturdayOpen.setSelectedIndex(0);
+        saturdayClose.setSelectedIndex(0);
         return hours;
     }
 
     public BusinessHours getSundayHours() {
         String open = (String) sundayOpen.getSelectedItem();
         String close = (String) sundayClose.getSelectedItem();
-        BusinessHours hours = new BusinessHours(2, open, close);
+        BusinessHours hours = new BusinessHours(7, open, close);
+
+        sundayOpen.setSelectedIndex(0);
+        sundayClose.setSelectedIndex(0);
         return hours;
     }
 
