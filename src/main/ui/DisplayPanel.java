@@ -11,26 +11,38 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class DisplayPanel implements ActionListener {
+    private JSplitPane displayPanel;
     private JScrollPane display;
-    private JPanel displayPanel;
+    private JPanel restaurantPanel;
+    private JPanel homeButtonPanel;
     private JButton homeButton;
     private RestaurantManagerApp app;
     private ArrayList<Restaurant> restaurants;
 
     public DisplayPanel(RestaurantManagerApp app) {
-        displayPanel = new JPanel(new GridLayout(0, 3, 20, 20));
-        displayPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
-        display = new JScrollPane(displayPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         this.app = app;
         restaurants = this.app.getRestaurantCollection();
+
+        restaurantPanel = new JPanel(new GridLayout(0, 3, 20, 20));
+        restaurantPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+        displayRestaurants();
+
         homeButton = new JButton("Home");
         homeButton.addActionListener(this);
-        displayPanel.add(homeButton, BorderLayout.NORTH);
-        displayRestaurantPanels();
+        homeButton.setPreferredSize(new Dimension(75, 40));
+
+        homeButtonPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.anchor = GridBagConstraints.FIRST_LINE_START;
+        homeButtonPanel.add(homeButton, constraints);
+
+        display = new JScrollPane(restaurantPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+        displayPanel = new JSplitPane(SwingConstants.HORIZONTAL, homeButtonPanel, display);
     }
 
-    private void displayRestaurantPanels() {
+    private void displayRestaurants() {
         for (Restaurant r : restaurants) {
             JPanel newPanel = new JPanel(new GridLayout(12, 1));
             newPanel.setBackground(new Color(201, 235, 211));
@@ -51,12 +63,12 @@ public class DisplayPanel implements ActionListener {
                 newPanel.add(hour);
             }
 
-            displayPanel.add(newPanel);
+            restaurantPanel.add(newPanel);
         }
     }
 
-    public JScrollPane getDisplay() {
-        return display;
+    public JSplitPane getDisplayPanel() {
+        return displayPanel;
     }
 
     @Override

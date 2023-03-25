@@ -4,7 +4,6 @@ import model.Restaurant;
 
 import javax.swing.*;
 import java.awt.*;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class RestaurantManagerApp {
@@ -34,18 +33,21 @@ public class RestaurantManagerApp {
         mainFrame.setContentPane(findPanel.getFindPanel());
         mainFrame.validate();
         mainFrame.repaint();
+        mainFrame.pack();
     }
 
     public void switchToAddPanel() {
         mainFrame.setContentPane(addPanel.getSplit());
         mainFrame.validate();
         mainFrame.repaint();
+        mainFrame.pack();
     }
 
     public void switchToMainPanel() {
         mainFrame.setContentPane(mainPanel.getMainPanel());
         mainFrame.validate();
         mainFrame.repaint();
+        mainFrame.pack();
     }
 
     public void addRestaurantToCollection() {

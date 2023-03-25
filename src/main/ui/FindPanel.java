@@ -1,15 +1,14 @@
 package ui;
 
-import model.Restaurant;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class FindPanel implements ActionListener {
-    private JPanel findPanel;
+    private JSplitPane findPanel;
+    private JPanel buttonPanel;
+    private JPanel homeButtonPanel;
     private RestaurantManagerApp app;
     private JButton modifyButton;
     private JButton displayButton;
@@ -22,37 +21,39 @@ public class FindPanel implements ActionListener {
 
     public FindPanel(RestaurantManagerApp app) {
         this.app = app;
-        findPanel = new JPanel(new GridLayout(3, 3));
+        buttonPanel = new JPanel(new GridLayout(3, 3));
+        addElementsToButtonPanel();
 
-        JLabel blank1 = new JLabel();
-        JLabel blank2 = new JLabel();
+        homeButtonPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.anchor = GridBagConstraints.NORTHWEST;
         homeButton = new JButton("Home");
         homeButton.addActionListener(this);
-        findPanel.add(homeButton);
-        findPanel.add(blank1);
-        findPanel.add(blank2);
-        addElementsToPanel();
+        homeButtonPanel.add(homeButton,constraints);
+
+        findPanel = new JSplitPane(SwingConstants.HORIZONTAL, homeButtonPanel, buttonPanel);
+
     }
 
-    private void addElementsToPanel() {
+    private void addElementsToButtonPanel() {
         modifyButton = new JButton("Modify Existing Restaurant in Collection");
         modifyButton.addActionListener(this);
-        findPanel.add(modifyButton);
+        buttonPanel.add(modifyButton);
         displayButton = new JButton("Display Restaurants in Collection");
         displayButton.addActionListener(this);
-        findPanel.add(displayButton);
+        buttonPanel.add(displayButton);
         filterButton = new JButton("Filter Restaurant Collection");
         filterButton.addActionListener(this);
-        findPanel.add(filterButton);
+        buttonPanel.add(filterButton);
         sortButton = new JButton("Sort Restaurant Collection");
         sortButton.addActionListener(this);
-        findPanel.add(sortButton);
+        buttonPanel.add(sortButton);
         removeButton = new JButton("Remove a Restaurant from the Collection");
         removeButton.addActionListener(this);
-        findPanel.add(removeButton);
+        buttonPanel.add(removeButton);
         randomButton = new JButton("Get a Random Restaurant Recommendation");
         randomButton.addActionListener(this);
-        findPanel.add(randomButton);
+        buttonPanel.add(randomButton);
     }
 
     @Override
@@ -68,12 +69,13 @@ public class FindPanel implements ActionListener {
 
     public void switchToDisplayPanel() {
         displayPanel = new DisplayPanel(app);
-        app.getMainFrame().setContentPane(displayPanel.getDisplay());
+        app.getMainFrame().setContentPane(displayPanel.getDisplayPanel());
         app.getMainFrame().validate();
         app.getMainFrame().repaint();
+        app.getMainFrame().pack();
     }
 
-    public JPanel getFindPanel() {
+    public JSplitPane getFindPanel() {
         return findPanel;
     }
 }
