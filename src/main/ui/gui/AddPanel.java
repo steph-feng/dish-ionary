@@ -9,11 +9,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AddPanel implements ActionListener {
-    protected JSplitPane split;
+    private JSplitPane split;
+    protected JSplitPane detailsSplit;
     protected JPanel detailsPanel;
     protected RestaurantManagerApp app;
     protected BusinessHoursPanel businessHoursPanel;
     protected JButton saveRestaurantDetailsButton;
+    private JButton homeButton;
+    private JPanel homeButtonPanel;
     protected JTextField nameField;
     protected JComboBox ratingField;
     protected JTextField cuisineField;
@@ -47,13 +50,12 @@ public class AddPanel implements ActionListener {
         JLabel pricingLabel = new JLabel("Pricing: ");
         pricingLabel.setLabelFor(pricingField);
 
-        saveRestaurantDetailsButton = new JButton("Save Details");
-        saveRestaurantDetailsButton.addActionListener(this);
-
         addElementsToPanel(nameLabel, ratingLabel, cuisineLabel, pricingLabel);
 
-        split = new JSplitPane(SwingConstants.HORIZONTAL, detailsPanel, businessHoursPanel.getBusinessHoursPanel());
+        detailsSplit = new JSplitPane(SwingConstants.HORIZONTAL, detailsPanel,
+                businessHoursPanel.getBusinessHoursPanel());
 
+        split = new JSplitPane(SwingConstants.HORIZONTAL, homeButtonPanel,detailsSplit);
     }
 
     private void addElementsToPanel(JLabel nameLabel, JLabel ratingLabel, JLabel cuisineLabel, JLabel pricingLabel) {
@@ -65,11 +67,22 @@ public class AddPanel implements ActionListener {
         detailsPanel.add(cuisineField);
         detailsPanel.add(pricingLabel);
         detailsPanel.add(pricingField);
+
         JLabel blank1 = new JLabel();
         JLabel blank2 = new JLabel();
+        saveRestaurantDetailsButton = new JButton("Save Details");
+        saveRestaurantDetailsButton.addActionListener(this);
         businessHoursPanel.getBusinessHoursPanel().add(blank1);
         businessHoursPanel.getBusinessHoursPanel().add(blank2);
         businessHoursPanel.getBusinessHoursPanel().add(saveRestaurantDetailsButton);
+
+        homeButton = new JButton("Home");
+        homeButton.addActionListener(this);
+        homeButton.setPreferredSize(new Dimension(75, 40));
+        homeButtonPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.anchor = GridBagConstraints.FIRST_LINE_START;
+        homeButtonPanel.add(homeButton, constraints);
     }
 
     @Override
@@ -96,6 +109,9 @@ public class AddPanel implements ActionListener {
             app.addRestaurantToCollection(newestRestaurant);
             app.switchToMainPanel();
         }
+        if (actionSource == homeButton) {
+            app.switchToMainPanel();
+        }
     }
 
     private void addBusinessHours(Restaurant r) {
@@ -108,40 +124,12 @@ public class AddPanel implements ActionListener {
         r.addHours(businessHoursPanel.getSundayHours());
     }
 
+    public JSplitPane getDetailsSplit() {
+        return detailsSplit;
+    }
+
     public JSplitPane getSplit() {
         return split;
-    }
-
-    public JPanel getDetailsPanel() {
-        return detailsPanel;
-    }
-
-    public JTextField getNameField() {
-        return nameField;
-    }
-
-    public JComboBox getRatingField() {
-        return ratingField;
-    }
-
-    public JTextField getCuisineField() {
-        return cuisineField;
-    }
-
-    public JComboBox getPricingField() {
-        return pricingField;
-    }
-
-    public BusinessHoursPanel getBusinessHoursPanel() {
-        return businessHoursPanel;
-    }
-
-    public JButton getSaveRestaurantDetailsButton() {
-        return saveRestaurantDetailsButton;
-    }
-
-    public Restaurant getAddedRestaurant() {
-        return addedRestaurant;
     }
 
 }

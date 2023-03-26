@@ -14,6 +14,7 @@ public class FindPanel implements ActionListener {
     private JButton displayButton;
     private DisplayPanel displayPanel;
     private ModifyPanel modifyPanel;
+    private SortPanel sortPanel;
     private JButton filterButton;
     private JButton sortButton;
     private JButton removeButton;
@@ -74,6 +75,17 @@ public class FindPanel implements ActionListener {
         if (actionSource == displayButton) {
             switchToDisplayPanel();
         }
+        if (actionSource == sortButton) {
+            switchToSortPanel();
+        }
+    }
+
+    private void switchToSortPanel() {
+        sortPanel = new SortPanel(app);
+        app.getMainFrame().setContentPane(sortPanel.getSplit());
+        app.getMainFrame().validate();
+        app.getMainFrame().repaint();
+        app.getMainFrame().pack();
     }
 
     private void switchToModifyPanel() {

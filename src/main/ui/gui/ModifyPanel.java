@@ -96,7 +96,7 @@ public class ModifyPanel extends AddPanel implements ActionListener {
                 pricingField.setSelectedItem(r.getPricing());
                 ratingField.setSelectedItem(Integer.toString(r.getRating()));
                 modifyBusinessHours(r);
-                restaurantDetailsPanel = getSplit();
+                restaurantDetailsPanel = getDetailsSplit();
                 detailsPane = new JSplitPane(SwingConstants.HORIZONTAL, homeButtonPanel, restaurantDetailsPanel);
                 switchToDetailsPane();
                 return true;
