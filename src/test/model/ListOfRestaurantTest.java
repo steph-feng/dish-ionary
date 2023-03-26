@@ -42,10 +42,19 @@ class ListOfRestaurantTest {
     }
 
     @Test
+    public void removeRestaurantObjectTest() {
+        Restaurant r = new Restaurant("Nook");
+        testList.addExistingRestaurant(r);
+        testList.removeRestaurant(r);
+        assertEquals(0, testList.getRestaurants().size());
+        assertFalse(testList.getRestaurants().contains(r));
+    }
+
+    @Test
     public void removeRestaurantSuccessfulTest() {
         testList.addNewRestaurant("Nook");
         testList.addNewRestaurant("OEB Breakfast");
-        testList.removeRestaurant("Nook");
+        testList.removeRestaurantByName("Nook");
         assertEquals(1, testList.getRestaurants().size());
         assertEquals("OEB Breakfast", testList.getRestaurants().get(0).getName());
     }
@@ -54,7 +63,7 @@ class ListOfRestaurantTest {
     public void removeRestaurantUnsuccessfulTest() {
         testList.addNewRestaurant("Nook");
         testList.addNewRestaurant("OEB Breakfast");
-        testList.removeRestaurant("Sura");
+        testList.removeRestaurantByName("Sura");
         assertEquals(2, testList.getRestaurants().size());
         assertEquals("Nook", testList.getRestaurants().get(0).getName());
     }
@@ -63,7 +72,7 @@ class ListOfRestaurantTest {
     public void removeRestaurantEndOfListTest() {
         testList.addNewRestaurant("Nook");
         testList.addNewRestaurant("OEB Breakfast");
-        testList.removeRestaurant("OEB Breakfast");
+        testList.removeRestaurantByName("OEB Breakfast");
         assertEquals(1, testList.getRestaurants().size());
         assertEquals("Nook", testList.getRestaurants().get(0).getName());
     }
@@ -202,7 +211,7 @@ class ListOfRestaurantTest {
     public void randomRestaurantTest() {
         testList.addNewRestaurant("Nook");
         testList.addNewRestaurant("OEB Breakfast");
-        testList.removeRestaurant("Nook");
+        testList.removeRestaurantByName("Nook");
         Restaurant random = testList.randomRestaurant();
         assertTrue(testList.getRestaurants().contains(random));
     }

@@ -9,7 +9,6 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class DisplayPanel implements ActionListener {
     private JSplitPane displayPanel;
@@ -18,11 +17,9 @@ public class DisplayPanel implements ActionListener {
     private JPanel homeButtonPanel;
     private JButton homeButton;
     private RestaurantManagerApp app;
-    private ListOfRestaurant restaurants;
 
     public DisplayPanel(RestaurantManagerApp app) {
         this.app = app;
-        restaurants = this.app.getRestaurantCollection();
 
         restaurantPanel = new JPanel(new GridLayout(0, 3, 20, 20));
         restaurantPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -44,7 +41,7 @@ public class DisplayPanel implements ActionListener {
     }
 
     private void displayRestaurants() {
-        for (Restaurant r : restaurants.getRestaurants()) {
+        for (Restaurant r : app.getRestaurantCollection().getRestaurants()) {
             JPanel newPanel = new JPanel(new GridLayout(12, 1));
             newPanel.setBackground(new Color(201, 235, 211));
             newPanel.setBorder(new EmptyBorder(20, 20, 20, 20));

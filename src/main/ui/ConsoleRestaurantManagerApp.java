@@ -360,7 +360,7 @@ public class ConsoleRestaurantManagerApp {
         System.out.println("Enter the name of the restaurant you would like to remove");
         String removedRestaurant = input.next();
         int sizeBeforeRemoval = restaurantCollection.getRestaurants().size();
-        restaurantCollection.removeRestaurant(removedRestaurant);
+        restaurantCollection.removeRestaurantByName(removedRestaurant);
         int sizeAfterRemoval = restaurantCollection.getRestaurants().size();
         if (sizeAfterRemoval < sizeBeforeRemoval) {
             System.out.println(removedRestaurant + " has been removed.");

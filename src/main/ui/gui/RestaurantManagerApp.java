@@ -1,6 +1,7 @@
 package ui.gui;
 
 import model.ListOfRestaurant;
+import model.Restaurant;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 import javax.swing.*;
@@ -74,8 +75,12 @@ public class RestaurantManagerApp {
         mainFrame.pack();
     }
 
-    public void addRestaurantToCollection() {
-        restaurantCollection.addExistingRestaurant(addPanel.getNewestRestaurant());
+    public void addRestaurantToCollection(Restaurant r) {
+        restaurantCollection.addExistingRestaurant(r);
+    }
+
+    public void removeRestaurantFromCollection(Restaurant r) {
+        restaurantCollection.removeRestaurant(r);
     }
 
     public void loadRestaurantCollection() {
@@ -104,11 +109,7 @@ public class RestaurantManagerApp {
         return mainFrame;
     }
 
-    public JsonReader getJsonReader() {
-        return jsonReader;
-    }
-
-    public JsonWriter getJsonWriter() {
-        return jsonWriter;
+    public AddPanel getAddPanel() {
+        return addPanel;
     }
 }

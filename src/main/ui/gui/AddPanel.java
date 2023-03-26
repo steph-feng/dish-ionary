@@ -9,16 +9,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AddPanel implements ActionListener {
-    private JSplitPane split;
-    private JPanel detailsPanel;
-    private RestaurantManagerApp app;
-    private BusinessHoursPanel businessHoursPanel;
-    private JButton saveRestaurantDetailsButton;
-    private JTextField nameField;
-    private JComboBox ratingField;
-    private JTextField cuisineField;
-    private JComboBox pricingField;
-    private Restaurant newestRestaurant;
+    protected JSplitPane split;
+    protected JPanel detailsPanel;
+    protected RestaurantManagerApp app;
+    protected BusinessHoursPanel businessHoursPanel;
+    protected JButton saveRestaurantDetailsButton;
+    protected JTextField nameField;
+    protected JComboBox ratingField;
+    protected JTextField cuisineField;
+    protected JComboBox pricingField;
+    protected Restaurant addedRestaurant;
 
 
     public AddPanel(RestaurantManagerApp app) {
@@ -50,17 +50,13 @@ public class AddPanel implements ActionListener {
         saveRestaurantDetailsButton = new JButton("Save Details");
         saveRestaurantDetailsButton.addActionListener(this);
 
-        JLabel blank1 = new JLabel();
-        JLabel blank2 = new JLabel();
-
-        addElementsToPanel(nameLabel, ratingLabel, cuisineLabel, pricingLabel, blank1, blank2);
+        addElementsToPanel(nameLabel, ratingLabel, cuisineLabel, pricingLabel);
 
         split = new JSplitPane(SwingConstants.HORIZONTAL, detailsPanel, businessHoursPanel.getBusinessHoursPanel());
 
     }
 
-    private void addElementsToPanel(JLabel nameLabel, JLabel ratingLabel, JLabel cuisineLabel,
-                                    JLabel pricingLabel, JLabel blank1, JLabel blank2) {
+    private void addElementsToPanel(JLabel nameLabel, JLabel ratingLabel, JLabel cuisineLabel, JLabel pricingLabel) {
         detailsPanel.add(nameLabel);
         detailsPanel.add(nameField);
         detailsPanel.add(ratingLabel);
@@ -69,6 +65,8 @@ public class AddPanel implements ActionListener {
         detailsPanel.add(cuisineField);
         detailsPanel.add(pricingLabel);
         detailsPanel.add(pricingField);
+        JLabel blank1 = new JLabel();
+        JLabel blank2 = new JLabel();
         businessHoursPanel.getBusinessHoursPanel().add(blank1);
         businessHoursPanel.getBusinessHoursPanel().add(blank2);
         businessHoursPanel.getBusinessHoursPanel().add(saveRestaurantDetailsButton);
@@ -78,7 +76,7 @@ public class AddPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JButton actionSource = (JButton) e.getSource();
         if (actionSource == saveRestaurantDetailsButton) {
-            newestRestaurant = new Restaurant(nameField.getText());
+            Restaurant newestRestaurant = new Restaurant(nameField.getText());
             nameField.setText("");
 
             Integer chosenRating = Integer.parseInt((String) ratingField.getSelectedItem());
@@ -92,29 +90,58 @@ public class AddPanel implements ActionListener {
             newestRestaurant.setPricing(chosenPricing);
             pricingField.setSelectedIndex(0);
 
-            addBusinessHours();
+            addBusinessHours(newestRestaurant);
+            addedRestaurant = newestRestaurant;
 
-            app.addRestaurantToCollection();
+            app.addRestaurantToCollection(newestRestaurant);
             app.switchToMainPanel();
         }
     }
 
-    private void addBusinessHours() {
-        newestRestaurant.addHours(businessHoursPanel.getMondayHours());
-        newestRestaurant.addHours(businessHoursPanel.getTuesdayHours());
-        newestRestaurant.addHours(businessHoursPanel.getWednesdayHours());
-        newestRestaurant.addHours(businessHoursPanel.getThursdayHours());
-        newestRestaurant.addHours(businessHoursPanel.getFridayHours());
-        newestRestaurant.addHours(businessHoursPanel.getSaturdayHours());
-        newestRestaurant.addHours(businessHoursPanel.getSundayHours());
+    private void addBusinessHours(Restaurant r) {
+        r.addHours(businessHoursPanel.getMondayHours());
+        r.addHours(businessHoursPanel.getTuesdayHours());
+        r.addHours(businessHoursPanel.getWednesdayHours());
+        r.addHours(businessHoursPanel.getThursdayHours());
+        r.addHours(businessHoursPanel.getFridayHours());
+        r.addHours(businessHoursPanel.getSaturdayHours());
+        r.addHours(businessHoursPanel.getSundayHours());
     }
 
     public JSplitPane getSplit() {
         return split;
     }
 
-    public Restaurant getNewestRestaurant() {
-        return newestRestaurant;
+    public JPanel getDetailsPanel() {
+        return detailsPanel;
+    }
+
+    public JTextField getNameField() {
+        return nameField;
+    }
+
+    public JComboBox getRatingField() {
+        return ratingField;
+    }
+
+    public JTextField getCuisineField() {
+        return cuisineField;
+    }
+
+    public JComboBox getPricingField() {
+        return pricingField;
+    }
+
+    public BusinessHoursPanel getBusinessHoursPanel() {
+        return businessHoursPanel;
+    }
+
+    public JButton getSaveRestaurantDetailsButton() {
+        return saveRestaurantDetailsButton;
+    }
+
+    public Restaurant getAddedRestaurant() {
+        return addedRestaurant;
     }
 
 }

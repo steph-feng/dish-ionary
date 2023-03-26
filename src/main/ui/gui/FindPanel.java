@@ -13,6 +13,7 @@ public class FindPanel implements ActionListener {
     private JButton modifyButton;
     private JButton displayButton;
     private DisplayPanel displayPanel;
+    private ModifyPanel modifyPanel;
     private JButton filterButton;
     private JButton sortButton;
     private JButton removeButton;
@@ -37,29 +38,28 @@ public class FindPanel implements ActionListener {
 
     private void addElementsToButtonPanel() {
         modifyButton = new JButton("Modify Existing Restaurant in Collection");
-        modifyButton.addActionListener(this);
-        modifyButton.setPreferredSize(new Dimension(300,100));
-        buttonPanel.add(modifyButton);
+        setButtonCharacteristics(modifyButton);
+
         displayButton = new JButton("Display Restaurants in Collection");
-        displayButton.addActionListener(this);
-        displayButton.setPreferredSize(new Dimension(300,100));
-        buttonPanel.add(displayButton);
+        setButtonCharacteristics(displayButton);
+
         filterButton = new JButton("Filter Restaurant Collection");
-        filterButton.addActionListener(this);
-        filterButton.setPreferredSize(new Dimension(300,100));
-        buttonPanel.add(filterButton);
+        setButtonCharacteristics(filterButton);
+
         sortButton = new JButton("Sort Restaurant Collection");
-        sortButton.addActionListener(this);
-        sortButton.setPreferredSize(new Dimension(300,100));
-        buttonPanel.add(sortButton);
+        setButtonCharacteristics(sortButton);
+
         removeButton = new JButton("Remove a Restaurant from the Collection");
-        removeButton.addActionListener(this);
-        removeButton.setPreferredSize(new Dimension(300,100));
-        buttonPanel.add(removeButton);
+        setButtonCharacteristics(removeButton);
+
         randomButton = new JButton("Get a Random Restaurant Recommendation");
-        randomButton.addActionListener(this);
-        randomButton.setPreferredSize(new Dimension(300,100));
-        buttonPanel.add(randomButton);
+        setButtonCharacteristics(randomButton);
+    }
+
+    private void setButtonCharacteristics(JButton b) {
+        b.addActionListener(this);
+        b.setPreferredSize(new Dimension(300,100));
+        buttonPanel.add(b);
     }
 
     @Override
@@ -68,9 +68,20 @@ public class FindPanel implements ActionListener {
         if (actionSource == homeButton) {
             app.switchToMainPanel();
         }
+        if (actionSource == modifyButton) {
+            switchToModifyPanel();
+        }
         if (actionSource == displayButton) {
             switchToDisplayPanel();
         }
+    }
+
+    private void switchToModifyPanel() {
+        modifyPanel = new ModifyPanel(app);
+        app.getMainFrame().setContentPane(modifyPanel.getModifyPane());
+        app.getMainFrame().validate();
+        app.getMainFrame().repaint();
+        app.getMainFrame().pack();
     }
 
     public void switchToDisplayPanel() {

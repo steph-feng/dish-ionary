@@ -45,9 +45,7 @@ public class BusinessHoursPanel {
 
     private void addElementsToPanel(JLabel blank, JLabel monday, JLabel tuesday, JLabel wednesday, JLabel thursday,
                                     JLabel friday, JLabel saturday, JLabel sunday, JLabel open, JLabel close) {
-        businessHoursPanel.add(blank);
-        businessHoursPanel.add(open);
-        businessHoursPanel.add(close);
+        addLabelsToPanel(blank, open, close);
         businessHoursPanel.add(monday);
         businessHoursPanel.add(mondayOpen);
         businessHoursPanel.add(mondayClose);
@@ -69,6 +67,12 @@ public class BusinessHoursPanel {
         businessHoursPanel.add(sunday);
         businessHoursPanel.add(sundayOpen);
         businessHoursPanel.add(sundayClose);
+    }
+
+    private void addLabelsToPanel(JLabel blank, JLabel open, JLabel close) {
+        businessHoursPanel.add(blank);
+        businessHoursPanel.add(open);
+        businessHoursPanel.add(close);
     }
 
 
@@ -169,5 +173,59 @@ public class BusinessHoursPanel {
         return hours;
     }
 
+    public JComboBox getMondayOpen() {
+        return mondayOpen;
+    }
 
+    public JComboBox getMondayClose() {
+        return mondayClose;
+    }
+
+    public JComboBox getTuesdayOpen() {
+        return tuesdayOpen;
+    }
+
+    public JComboBox getTuesdayClose() {
+        return tuesdayClose;
+    }
+
+    public JComboBox getWednesdayOpen() {
+        return wednesdayOpen;
+    }
+
+    public JComboBox getWednesdayClose() {
+        return wednesdayClose;
+    }
+
+    public JComboBox getThursdayOpen() {
+        return thursdayOpen;
+    }
+
+    public JComboBox getThursdayClose() {
+        return thursdayClose;
+    }
+
+    public JComboBox getFridayOpen() {
+        return fridayOpen;
+    }
+
+    public JComboBox getFridayClose() {
+        return fridayClose;
+    }
+
+    public JComboBox getSaturdayOpen() {
+        return saturdayOpen;
+    }
+
+    public JComboBox getSaturdayClose() {
+        return saturdayClose;
+    }
+
+    public JComboBox getSundayOpen() {
+        return sundayOpen;
+    }
+
+    public JComboBox getSundayClose() {
+        return sundayClose;
+    }
 }
