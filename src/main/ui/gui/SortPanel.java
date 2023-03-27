@@ -8,6 +8,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/*
+ * Displays sortPanel with its buttons and the sorted restaurants
+ */
+
 public class SortPanel implements ActionListener {
     private JSplitPane split;
     private JPanel buttonPanel;
@@ -17,6 +21,7 @@ public class SortPanel implements ActionListener {
     private JButton homeButton;
     private RestaurantManagerApp app;
 
+    // EFFECTS: initializes fields and buttons
     public SortPanel(RestaurantManagerApp app) {
         this.app = app;
 
@@ -27,7 +32,14 @@ public class SortPanel implements ActionListener {
         sortLabel.setLabelFor(sortOptions);
 
         homeButton = new JButton("Home");
-        homeButton.addActionListener(this);
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == homeButton) {
+                    app.switchToMainPanel();
+                }
+            }
+        });
         homeButton.setPreferredSize(new Dimension(75, 40));
 
         buttonPanel = new JPanel(new GridLayout(1, 4));
@@ -42,12 +54,9 @@ public class SortPanel implements ActionListener {
 
     }
 
+    // EFFECTS: sorts and displays restaurant by pricing or rating depending on ActionEvent
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == homeButton) {
-            app.switchToMainPanel();
-        }
-
         JComboBox action = (JComboBox) e.getSource();
         String selectedOption = (String) action.getSelectedItem();
         if (selectedOption.equals("Sort by Rating")) {
@@ -64,6 +73,8 @@ public class SortPanel implements ActionListener {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays given pane on mainFrame
     private void switchToSortedPane(JSplitPane pane) {
         app.getMainFrame().setContentPane(pane);
         app.getMainFrame().validate();
@@ -71,6 +82,7 @@ public class SortPanel implements ActionListener {
         app.getMainFrame().pack();
     }
 
+    // EFFECTS: returns split pane
     public JSplitPane getSplit() {
         return split;
     }

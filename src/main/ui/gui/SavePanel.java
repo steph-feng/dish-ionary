@@ -5,6 +5,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/*
+ * Displays savePanel and message to indicate successful saving
+ */
+
 public class SavePanel implements ActionListener {
     private RestaurantManagerApp app;
     private JSplitPane savePane;
@@ -12,9 +16,11 @@ public class SavePanel implements ActionListener {
     private JPanel homeButtonPanel;
     private JButton homeButton;
 
+    // EFFECTS: initializes panels, labels, and buttons
     public SavePanel(RestaurantManagerApp app) {
         this.app = app;
         savePanel = new JPanel();
+        savePanel.setPreferredSize(new Dimension(500, 300));
         savePanel.add(new JLabel("Saved restaurants to file."));
 
         homeButtonPanel = new JPanel(new GridBagLayout());
@@ -27,10 +33,12 @@ public class SavePanel implements ActionListener {
         savePane = new JSplitPane(SwingConstants.HORIZONTAL, homeButtonPanel, savePanel);
     }
 
+    // EFFECTS: returns savePane
     public JSplitPane getSavePane() {
         return savePane;
     }
 
+    // EFFECTS: switches to MainPanel when homeButton is pressed
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton actionSource = (JButton) e.getSource();

@@ -8,6 +8,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
+/*
+ * Displays home window and performs its loading, saving, and adding functions
+ */
+
 public class RestaurantManagerApp {
     private JFrame mainFrame;
     private MainPanel mainPanel;
@@ -20,6 +24,7 @@ public class RestaurantManagerApp {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
+    // EFFECTS: initializes fields
     public RestaurantManagerApp() {
         mainFrame = new JFrame("Restaurant Manager");
         restaurantCollection = new ListOfRestaurant();
@@ -40,6 +45,8 @@ public class RestaurantManagerApp {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets frame to display the SavePanel
     public void switchToSavePanel() {
         mainFrame.setContentPane(savePanel.getSavePane());
         mainFrame.validate();
@@ -47,6 +54,8 @@ public class RestaurantManagerApp {
         mainFrame.pack();
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets frame to display the LoadPanel
     public void switchToLoadPanel() {
         mainFrame.setContentPane(loadPanel.getLoadPane());
         mainFrame.validate();
@@ -54,6 +63,8 @@ public class RestaurantManagerApp {
         mainFrame.pack();
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets frame to display the FindPanel
     public void switchToFindPanel() {
         mainFrame.setContentPane(findPanel.getFindPanel());
         mainFrame.validate();
@@ -61,6 +72,8 @@ public class RestaurantManagerApp {
         mainFrame.pack();
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets frame to display the AddPanel
     public void switchToAddPanel() {
         mainFrame.setContentPane(addPanel.getSplit());
         mainFrame.validate();
@@ -68,6 +81,8 @@ public class RestaurantManagerApp {
         mainFrame.pack();
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets frame to display the MainPanel
     public void switchToMainPanel() {
         mainFrame.setContentPane(mainPanel.getMainPanel());
         mainFrame.validate();
@@ -75,14 +90,14 @@ public class RestaurantManagerApp {
         mainFrame.pack();
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds given restaurant to the collection
     public void addRestaurantToCollection(Restaurant r) {
         restaurantCollection.addExistingRestaurant(r);
     }
 
-    public void removeRestaurantFromCollection(Restaurant r) {
-        restaurantCollection.removeRestaurant(r);
-    }
 
+    // EFFECTS: loads restaurant collection from file
     public void loadRestaurantCollection() {
         try {
             restaurantCollection = jsonReader.read();
@@ -91,6 +106,7 @@ public class RestaurantManagerApp {
         }
     }
 
+    // EFFECTS: saves restaurant collection to file
     public void saveRestaurantCollection() {
         try {
             jsonWriter.open();
@@ -101,15 +117,14 @@ public class RestaurantManagerApp {
         }
     }
 
+    // EFFECTS: returns restaurant collection
     public ListOfRestaurant getRestaurantCollection() {
         return restaurantCollection;
     }
 
+    // EFFECTS: returns mainFrame
     public JFrame getMainFrame() {
         return mainFrame;
     }
 
-    public AddPanel getAddPanel() {
-        return addPanel;
-    }
 }

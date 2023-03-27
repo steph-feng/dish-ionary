@@ -8,6 +8,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/*
+ * Displays a search bar and then the restaurant details to be modified
+ */
+
 public class ModifyPanel extends AddPanel implements ActionListener {
     private RestaurantManagerApp app;
     private ListOfRestaurant restaurants;
@@ -22,6 +26,7 @@ public class ModifyPanel extends AddPanel implements ActionListener {
     private JButton searchButton;
     private JTextField searchField;
 
+    // EFFECTS: initializes fields and displays "search" text box
     public ModifyPanel(RestaurantManagerApp app) {
         super(app);
         this.app = app;
@@ -47,6 +52,9 @@ public class ModifyPanel extends AddPanel implements ActionListener {
         modifyPane = new JSplitPane(SwingConstants.HORIZONTAL, homeButtonPanel, modifyPanel);
     }
 
+    // EFFECTS: switches to MainPanel if homeButton is pressed
+    //          processes inputted restaurant name if searchButton is pressed
+    //          saves restaurant details and resets field if saveRestaurantDetailsButton is pressed
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton actionSource = (JButton) e.getSource();
@@ -76,6 +84,8 @@ public class ModifyPanel extends AddPanel implements ActionListener {
 
     }
 
+    // MODIFIES: r
+    // EFFECTS: adds inputted times to given restaurant
     private void addBusinessHours(Restaurant r) {
         r.getHours().clear();
         r.addHours(businessHoursPanel.getMondayHours());
@@ -88,6 +98,9 @@ public class ModifyPanel extends AddPanel implements ActionListener {
     }
 
 
+    // MODIFIES: this
+    // EFFECTS: displays previously inputted restaurant details, returns true if restaurant is in collection
+    //          returns false if restaurant is not in collection and display message
     private Boolean processNameField() {
         for (Restaurant r : restaurants.getRestaurants()) {
             if (searchField.getText().equals(r.getName())) {
@@ -103,7 +116,8 @@ public class ModifyPanel extends AddPanel implements ActionListener {
             }
         }
         noRestaurantPanel = new JPanel();
-        JLabel noRestaurantLabel = new JLabel("No restaurant with that name is in the collection.");
+        noRestaurantPanel.setPreferredSize(new Dimension(500, 300));
+        JLabel noRestaurantLabel = new JLabel("This restaurant is not already in the collection.");
         noRestaurantPanel.add(noRestaurantLabel);
         noDetailsPane = new JSplitPane(SwingConstants.HORIZONTAL, homeButtonPanel, noRestaurantPanel);
         switchToNoDetailsPane();
@@ -111,6 +125,7 @@ public class ModifyPanel extends AddPanel implements ActionListener {
 
     }
 
+    // EFFECTS: displays previously inputted business hours of the given restaurant
     private void modifyBusinessHours(Restaurant r) {
         businessHoursPanel.getMondayOpen().setSelectedItem(r.getHours().get(0).getOpeningHours().toString());
         businessHoursPanel.getMondayClose().setSelectedItem(r.getHours().get(0).getClosingHours().toString());
@@ -128,6 +143,7 @@ public class ModifyPanel extends AddPanel implements ActionListener {
         businessHoursPanel.getSundayClose().setSelectedItem(r.getHours().get(6).getClosingHours().toString());
     }
 
+    // EFFECTS: sets MainFrame to display the detailPane
     private void switchToDetailsPane() {
         app.getMainFrame().setContentPane(detailsPane);
         app.getMainFrame().validate();
@@ -135,6 +151,7 @@ public class ModifyPanel extends AddPanel implements ActionListener {
         app.getMainFrame().pack();
     }
 
+    // EFFECTS: sets MainFrame to display the noDetailsPane
     private void switchToNoDetailsPane() {
         app.getMainFrame().setContentPane(noDetailsPane);
         app.getMainFrame().validate();
@@ -142,7 +159,7 @@ public class ModifyPanel extends AddPanel implements ActionListener {
         app.getMainFrame().pack();
     }
 
-
+    // EFFECTS: returns modifyPane
     public JSplitPane getModifyPane() {
         return modifyPane;
     }

@@ -8,11 +8,16 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
 
+/*
+ * Displays the restaurants of a given list
+ */
+
 public class ShowRestaurantsPanel {
     private JScrollPane display;
     private JPanel restaurantPanel;
     private RestaurantManagerApp app;
 
+    // EFFECTS: initializes panels and fields
     public ShowRestaurantsPanel(RestaurantManagerApp app, ArrayList<Restaurant> restaurants) {
         this.app = app;
 
@@ -24,6 +29,8 @@ public class ShowRestaurantsPanel {
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates a new panel for each restaurant in collection and adds it to restaurantPanel
     private void displayRestaurants(ArrayList<Restaurant> restaurants) {
         for (Restaurant r : restaurants) {
             JPanel newPanel = new JPanel(new GridLayout(12, 1));
@@ -49,6 +56,7 @@ public class ShowRestaurantsPanel {
         }
     }
 
+    // EFFECTS: returns displayed restaurant panel
     public JScrollPane getDisplay() {
         return display;
     }

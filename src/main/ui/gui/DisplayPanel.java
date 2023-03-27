@@ -9,6 +9,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/*
+ * Displays displayPanel with its buttons and all restaurants
+ */
+
 public class DisplayPanel implements ActionListener {
     private JSplitPane displayPanel;
     private JScrollPane display;
@@ -17,6 +21,7 @@ public class DisplayPanel implements ActionListener {
     private JButton homeButton;
     private RestaurantManagerApp app;
 
+    // EFFECTS: initializes fields and panels
     public DisplayPanel(RestaurantManagerApp app) {
         this.app = app;
 
@@ -39,6 +44,8 @@ public class DisplayPanel implements ActionListener {
         displayPanel = new JSplitPane(SwingConstants.HORIZONTAL, homeButtonPanel, display);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates a new panel for each restaurant in collection and adds it to restaurantPanel
     private void displayRestaurants() {
         for (Restaurant r : app.getRestaurantCollection().getRestaurants()) {
             JPanel newPanel = new JPanel(new GridLayout(12, 1));
@@ -64,10 +71,12 @@ public class DisplayPanel implements ActionListener {
         }
     }
 
+    // EFFECTS: returns displayPanel
     public JSplitPane getDisplayPanel() {
         return displayPanel;
     }
 
+    // EFFECTS: switches to MainPanel when homeButton is pressed
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton actionSource = (JButton) e.getSource();

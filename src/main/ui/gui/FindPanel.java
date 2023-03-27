@@ -5,6 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/*
+ * Displays findPanel with seven buttons for user interaction
+ */
+
+
 public class FindPanel implements ActionListener {
     private JSplitPane findPanel;
     private JPanel buttonPanel;
@@ -22,6 +27,7 @@ public class FindPanel implements ActionListener {
     private JButton randomButton;
     private JButton homeButton;
 
+    // EFFECTS: initializes fields and homeButtonPanel
     public FindPanel(RestaurantManagerApp app) {
         this.app = app;
         buttonPanel = new JPanel(new GridLayout(3, 3));
@@ -38,6 +44,8 @@ public class FindPanel implements ActionListener {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds buttons to findPanel
     private void addElementsToButtonPanel() {
         modifyButton = new JButton("Modify Existing Restaurant in Collection");
         setButtonCharacteristics(modifyButton);
@@ -58,12 +66,14 @@ public class FindPanel implements ActionListener {
         setButtonCharacteristics(randomButton);
     }
 
+    // EFFECTS: sets properties for each button
     private void setButtonCharacteristics(JButton b) {
         b.addActionListener(this);
         b.setPreferredSize(new Dimension(300,100));
         buttonPanel.add(b);
     }
 
+    // EFFECTS: switches to panel to display depending on the button pressed
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton actionSource = (JButton) e.getSource();
@@ -84,6 +94,7 @@ public class FindPanel implements ActionListener {
         }
     }
 
+    // EFFECTS: sets MainFrame to display RandomPanel
     private void switchToRandomPanel() {
         randomPanel = new RandomPanel(app);
         app.getMainFrame().setContentPane(randomPanel.getRandomPane());
@@ -92,6 +103,7 @@ public class FindPanel implements ActionListener {
         app.getMainFrame().pack();
     }
 
+    // EFFECTS: sets MainFrame to display SortPanel
     private void switchToSortPanel() {
         sortPanel = new SortPanel(app);
         app.getMainFrame().setContentPane(sortPanel.getSplit());
@@ -100,6 +112,7 @@ public class FindPanel implements ActionListener {
         app.getMainFrame().pack();
     }
 
+    // EFFECTS: sets MainFrame to display ModifyPanel
     private void switchToModifyPanel() {
         modifyPanel = new ModifyPanel(app);
         app.getMainFrame().setContentPane(modifyPanel.getModifyPane());
@@ -108,6 +121,7 @@ public class FindPanel implements ActionListener {
         app.getMainFrame().pack();
     }
 
+    // EFFECTS: sets MainFrame to display DisplayPanel
     public void switchToDisplayPanel() {
         displayPanel = new DisplayPanel(app);
         app.getMainFrame().setContentPane(displayPanel.getDisplayPanel());
@@ -116,6 +130,7 @@ public class FindPanel implements ActionListener {
         app.getMainFrame().pack();
     }
 
+    // EFFECTS: returns findPanel
     public JSplitPane getFindPanel() {
         return findPanel;
     }

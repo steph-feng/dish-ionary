@@ -8,6 +8,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/*
+ * Displays addPanel and its text fields, saves restaurant to collection
+ */
 public class AddPanel implements ActionListener {
     private JSplitPane split;
     protected JSplitPane detailsSplit;
@@ -24,6 +27,7 @@ public class AddPanel implements ActionListener {
     protected Restaurant addedRestaurant;
 
 
+    // EFFECTS: initializes fields and text boxes
     public AddPanel(RestaurantManagerApp app) {
         this.app = app;
 
@@ -58,6 +62,8 @@ public class AddPanel implements ActionListener {
         split = new JSplitPane(SwingConstants.HORIZONTAL, homeButtonPanel,detailsSplit);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds elements to each panel
     private void addElementsToPanel(JLabel nameLabel, JLabel ratingLabel, JLabel cuisineLabel, JLabel pricingLabel) {
         detailsPanel.add(nameLabel);
         detailsPanel.add(nameField);
@@ -85,6 +91,8 @@ public class AddPanel implements ActionListener {
         homeButtonPanel.add(homeButton, constraints);
     }
 
+    // EFFECTS: switches to MainPanel if homeButton is pressed
+    //          saves restaurant to collection and resets fields if saveRestaurantDetailsButton is pressed
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton actionSource = (JButton) e.getSource();
@@ -114,6 +122,8 @@ public class AddPanel implements ActionListener {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the input times to restaurant's business hours
     private void addBusinessHours(Restaurant r) {
         r.addHours(businessHoursPanel.getMondayHours());
         r.addHours(businessHoursPanel.getTuesdayHours());
@@ -124,10 +134,12 @@ public class AddPanel implements ActionListener {
         r.addHours(businessHoursPanel.getSundayHours());
     }
 
+    // EFFECTS: returns restaurant details panel
     public JSplitPane getDetailsSplit() {
         return detailsSplit;
     }
 
+    // EFFECTS: returns split pane
     public JSplitPane getSplit() {
         return split;
     }

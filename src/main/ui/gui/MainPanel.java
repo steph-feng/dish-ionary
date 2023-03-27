@@ -5,7 +5,10 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
+
+/*
+ * Displays the panel with add, find, load, and save buttons
+ */
 
 public class MainPanel implements ActionListener {
     private JPanel mainPanel;
@@ -15,6 +18,7 @@ public class MainPanel implements ActionListener {
     private JButton loadButton;
     private JButton saveButton;
 
+    // EFFECTS: initializes fields and panel
     public MainPanel(RestaurantManagerApp app) {
         this.app = app;
 
@@ -24,7 +28,8 @@ public class MainPanel implements ActionListener {
 
     }
 
-
+    // MODIFIES: this
+    // EFFECTS: sets properties for the buttons
     private void initializeButtons() {
         addButton = new JButton("Add");
         addButton.setPreferredSize(new Dimension(100, 100));
@@ -46,6 +51,10 @@ public class MainPanel implements ActionListener {
     }
 
 
+    // EFFECTS: switches to AddPanel if addButton is pressed
+    //          switches to FindPanel if findButton is pressed
+    //          switches to LoadPanel if loadButton is pressed
+    //          switches to SavePanel if saveButton is pressed
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton actionSource = (JButton) e.getSource();
@@ -66,6 +75,7 @@ public class MainPanel implements ActionListener {
     }
 
 
+    // EFFECTS: returns mainPanel
     public JPanel getMainPanel() {
         return mainPanel;
     }

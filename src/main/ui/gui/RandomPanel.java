@@ -9,6 +9,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/*
+ * Displays the random restaurant recommendation and a disappearing gif
+ */
+
 public class RandomPanel implements ActionListener {
     private JSplitPane randomPane;
     private RestaurantManagerApp app;
@@ -16,6 +20,7 @@ public class RandomPanel implements ActionListener {
     private JPanel randomPanel;
     private JButton homeButton;
 
+    // EFFECTS: initializes fields and sets timer for gif
     public RandomPanel(RestaurantManagerApp app) {
         this.app = app;
 
@@ -39,6 +44,8 @@ public class RandomPanel implements ActionListener {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: removes displayed gif after two seconds
     private void removeGifAfterTime(RestaurantManagerApp app, JLabel gifLabel) {
         Timer timer = new Timer(2000, new ActionListener() {
             @Override
@@ -53,6 +60,8 @@ public class RandomPanel implements ActionListener {
         timer.start();
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates panel to display restaurant recommendation
     private void addRestaurantRecommendation(RestaurantManagerApp app) {
         Restaurant r = app.getRestaurantCollection().randomRestaurant();
         JPanel newPanel = new JPanel(new GridLayout(12, 1));
@@ -76,6 +85,7 @@ public class RandomPanel implements ActionListener {
         randomPanel.add(newPanel);
     }
 
+    // EFFECTS: displays MainPanel when homeButton is pressed
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == homeButton) {
@@ -83,6 +93,7 @@ public class RandomPanel implements ActionListener {
         }
     }
 
+    // EFFECTS: returns randomPane
     public JSplitPane getRandomPane() {
         return randomPane;
     }
