@@ -19,9 +19,19 @@ public class SavePanel implements ActionListener {
     // EFFECTS: initializes panels, labels, and buttons
     public SavePanel(RestaurantManagerApp app) {
         this.app = app;
-        savePanel = new JPanel();
-        savePanel.setPreferredSize(new Dimension(500, 300));
-        savePanel.add(new JLabel("Saved restaurants to file."));
+        savePanel = new JPanel(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.ipady = 20;
+        c.gridx = 0;
+        c.gridy = 0;
+        savePanel.setPreferredSize(new Dimension(600,350));
+        savePanel.add(new JLabel("Saved restaurants to file!"), c);
+
+        c.gridx = 0;
+        c.gridy = 1;
+        ImageIcon gif = new ImageIcon("./data/gif3.gif");
+        JLabel gifLabel = new JLabel(gif);
+        savePanel.add(gifLabel, c);
 
         homeButtonPanel = new JPanel(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();

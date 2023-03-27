@@ -20,6 +20,7 @@ public class FindPanel implements ActionListener {
     private DisplayPanel displayPanel;
     private ModifyPanel modifyPanel;
     private SortPanel sortPanel;
+    private RemovePanel removePanel;
     private RandomPanel randomPanel;
     private JButton filterButton;
     private JButton sortButton;
@@ -89,9 +90,21 @@ public class FindPanel implements ActionListener {
         if (actionSource == sortButton) {
             switchToSortPanel();
         }
+        if (actionSource == removeButton) {
+            switchToRemovePanel();
+        }
         if (actionSource == randomButton) {
             switchToRandomPanel();
         }
+    }
+
+    // EFFECTS: sets MainFrame to display RemovePanel
+    private void switchToRemovePanel() {
+        removePanel = new RemovePanel(app);
+        app.getMainFrame().setContentPane(removePanel.getSplit());
+        app.getMainFrame().validate();
+        app.getMainFrame().repaint();
+        app.getMainFrame().pack();
     }
 
     // EFFECTS: sets MainFrame to display RandomPanel

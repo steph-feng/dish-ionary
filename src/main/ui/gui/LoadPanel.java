@@ -19,9 +19,20 @@ public class LoadPanel implements ActionListener {
     // EFFECTS: initializes panels, buttons, and labels
     public LoadPanel(RestaurantManagerApp app) {
         this.app = app;
-        loadPanel = new JPanel();
-        loadPanel.setPreferredSize(new Dimension(500,300));
-        loadPanel.add(new JLabel("Restaurants loaded from file."));
+
+        loadPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.ipady = 20;
+        c.gridx = 0;
+        c.gridy = 0;
+        loadPanel.setPreferredSize(new Dimension(600,400));
+        loadPanel.add(new JLabel("Restaurants loaded from file!"), c);
+
+        c.gridx = 0;
+        c.gridy = 1;
+        ImageIcon gif = new ImageIcon("./data/gif2.gif");
+        JLabel gifLabel = new JLabel(gif);
+        loadPanel.add(gifLabel, c);
 
         homeButtonPanel = new JPanel(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();

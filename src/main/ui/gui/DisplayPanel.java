@@ -76,6 +76,11 @@ public class DisplayPanel implements ActionListener {
         return displayPanel;
     }
 
+    // EFFECTS: returns display panel
+    public JScrollPane getDisplay() {
+        return display;
+    }
+
     // EFFECTS: switches to MainPanel when homeButton is pressed
     @Override
     public void actionPerformed(ActionEvent e) {
