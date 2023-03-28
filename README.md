@@ -45,7 +45,7 @@ both problems, allowing me to save, categroize, and search for the next restaura
   component.
 - You can save the state of my application by clicking on the "Save" button on the home page.
 - You can reload the state of my application by clicking on the "Load" button on the home page.
-- 
+
 
 # Attribution
 - Drumroll Please GIF: https://media0.giphy.com/media/Xg6MhjKhDwoBwni45d/giphy.gif?cid=ecf05e471jc6inxc0thuin9wyt6hlbs6cqecyt3ql5ejw7po&rid=giphy.gif&ct=g
