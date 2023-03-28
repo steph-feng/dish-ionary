@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /*
- * Displays displayPanel with its buttons and all restaurants
+ * Displays all restaurants in the collection
  */
 
 public class DisplayPanel implements ActionListener {

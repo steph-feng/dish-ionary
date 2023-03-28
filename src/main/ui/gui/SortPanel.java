@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /*
- * Displays sortPanel with its buttons and the sorted restaurants
+ * Displays the sorted restaurant collection
  */
 
 public class SortPanel implements ActionListener {

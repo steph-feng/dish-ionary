@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /*
- * Displays removePanel with its buttons and the restaurants left in the collection
+ * Displays a search bar and the restaurants left in the collection
  */
 
 public class RemovePanel implements ActionListener {

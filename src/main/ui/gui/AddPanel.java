@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /*
- * Displays addPanel and its text fields, saves restaurant to collection
+ * Displays text fields to add restaurant details
  */
 public class AddPanel implements ActionListener {
     private JSplitPane split;
