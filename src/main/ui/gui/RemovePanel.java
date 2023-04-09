@@ -12,7 +12,6 @@ import java.awt.event.ActionListener;
 public class RemovePanel implements ActionListener {
     private JSplitPane split;
     private JPanel buttonPanel;
-    private JPanel restaurantPanel;
     private DisplayPanel displayPanel;
     private JTextField searchField;
     private JButton searchButton;

@@ -25,7 +25,7 @@ both problems, allowing me to save, categroize, and search for the next restaura
 - As a user, I want to have the option to load the state of my restaurant collection from file.
 - As a user, I want to have the option to save the state of my restaurant collection to file.
 
-# Instructions for Grader
+# Phase 3: Instructions for Grader 
 - You can generate the first required action related to adding Xs to a Y by clicking on the button labelled "Add" on the
   home page. This lets the user add a restaurant and its details to the collection.
 - You can generate the second required action related to adding Xs to a Y by clicking on the button labelled "Find" on 
@@ -45,6 +45,19 @@ both problems, allowing me to save, categroize, and search for the next restaura
   component.
 - You can save the state of my application by clicking on the "Save" button on the home page.
 - You can reload the state of my application by clicking on the "Load" button on the home page.
+
+# Phase 4: Task 2
+Created a new restaurant named: Nook\
+Added a restaurant named Nook to the collection.\
+Created a new restaurant named: Sura\
+Added a restaurant named Sura to the collection.\
+Displayed all restaurants currently in the collection.\
+Sorted restaurant collection by rating from high to low.\
+Sorted restaurant collection by pricing from low to high.\
+Provided a random restaurant recommendation.\
+Displayed all restaurants currently in the collection.\
+Removed a restaurant named Sura from the collection.\
+Displayed all restaurants currently in the collection.\
 
 
 # Attribution

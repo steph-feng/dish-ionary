@@ -26,18 +26,24 @@ public class ListOfRestaurant implements Writable {
     public void addNewRestaurant(String restaurantName) {
         Restaurant r = new Restaurant(restaurantName);
         restaurants.add(r);
+        EventLog.getInstance().logEvent(new Event("Added a restaurant named "
+                + restaurantName + " to the collection."));
     }
 
     // MODIFIES: this
     // EFFECTS: adds given restaurant to list
     public void addExistingRestaurant(Restaurant r) {
         restaurants.add(r);
+        EventLog.getInstance().logEvent(new Event("Added a restaurant named "
+                + r.getName() + " to the collection."));
     }
 
     // MODIFIES: this
     // EFFECTS: removes given restaurant from this
     public void removeRestaurant(Restaurant r) {
         restaurants.remove(r);
+        EventLog.getInstance().logEvent(new Event("Removed a restaurant named "
+                + r.getName() + " from the collection."));
     }
 
     // MODIFIES: this
@@ -49,11 +55,14 @@ public class ListOfRestaurant implements Writable {
                 iterator.remove();
             }
         }
+        EventLog.getInstance().logEvent(new Event("Removed a restaurant named "
+                + restaurantName + " from the collection."));
     }
 
     // EFFECTS: sorts restaurant ratings in descending order
     public ArrayList<Restaurant> sortRatings() {
         Collections.sort(restaurants, new RestaurantRatingComparator());
+        EventLog.getInstance().logEvent(new Event("Sorted restaurant collection by rating from high to low."));
         return restaurants;
     }
 
@@ -61,6 +70,7 @@ public class ListOfRestaurant implements Writable {
     // EFFECTS: sorts restaurant prices from $ -> $$ -> $$$ -> $$$$
     public ArrayList<Restaurant> sortPrices() {
         Collections.sort(restaurants, new RestaurantPriceComparator());
+        EventLog.getInstance().logEvent(new Event("Sorted restaurant collection by pricing from low to high."));
         return restaurants;
     }
 
@@ -73,6 +83,7 @@ public class ListOfRestaurant implements Writable {
                 filteredList.add(r);
             }
         }
+        EventLog.getInstance().logEvent(new Event("Filtered restaurant collection by given price."));
         return filteredList;
     }
 
@@ -85,6 +96,7 @@ public class ListOfRestaurant implements Writable {
                 filteredList.add(r);
             }
         }
+        EventLog.getInstance().logEvent(new Event("Filtered restaurant collection by given rating."));
         return filteredList;
     }
 
@@ -96,6 +108,7 @@ public class ListOfRestaurant implements Writable {
                 filteredList.add(r);
             }
         }
+        EventLog.getInstance().logEvent(new Event("Filtered restaurant collection by given cuisine."));
         return filteredList;
     }
 
@@ -107,6 +120,7 @@ public class ListOfRestaurant implements Writable {
                 filteredList.add(r);
             }
         }
+        EventLog.getInstance().logEvent(new Event("Filtered restaurant collection by given time."));
         return filteredList;
     }
 
@@ -116,11 +130,13 @@ public class ListOfRestaurant implements Writable {
         Random rand = new Random();
         int randomNumberUpperBound = restaurants.size();
         int randomNumber = rand.nextInt(randomNumberUpperBound);
+        EventLog.getInstance().logEvent(new Event("Provided a random restaurant recommendation."));
         return restaurants.get(randomNumber);
     }
 
     // EFFECTS: returns all restaurants in list
     public ArrayList<Restaurant> getRestaurants() {
+        EventLog.getInstance().logEvent(new Event("Displayed all restaurants currently in the collection."));
         return restaurants;
     }
 

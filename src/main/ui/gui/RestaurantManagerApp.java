@@ -1,11 +1,17 @@
 package ui.gui;
 
+import model.Event;
+import model.EventLog;
 import model.ListOfRestaurant;
 import model.Restaurant;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.awt.event.WindowStateListener;
 import java.io.IOException;
 
 /*
@@ -41,6 +47,15 @@ public class RestaurantManagerApp {
         mainFrame.pack();
         mainFrame.setSize(new Dimension(400, 300));
         mainFrame.setVisible(true);
+        WindowListener listener = new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                for (Event next : EventLog.getInstance()) {
+                    System.out.println(next.getDescription());
+                }
+            }
+        };
+        mainFrame.addWindowListener(listener);
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
     }
@@ -126,5 +141,4 @@ public class RestaurantManagerApp {
     public JFrame getMainFrame() {
         return mainFrame;
     }
-
 }
