@@ -59,6 +59,40 @@ Displayed all restaurants currently in the collection.\
 Removed a restaurant named Sura from the collection.\
 Displayed all restaurants currently in the collection.\
 
+# Phase 4: Task 3
+To refactor this design, I would first apply the Singleton Design Pattern to the RestaurantManagerApp class.
+As seen on the UML Design Diagram, 11/12 concrete classes (not including the RestaurantManagerApp class itself) in the GUI 
+package are associated with the RestaurantManagerApp class. When investigating the code, I notice that the same instance of 
+RestaurantManagerApp is passed as a parameter to each of these associated classes. Only one instance is necessary
+because each action and its associated panel is displayed on the same JFrame that is held by the RestaurantManagerApp instance. 
+Thus, applying the Singleton Pattern will enable global access to one and only one RestaurantManagerApp instance. This will
+allow more convenient access to the RestaurantManagerApp instance while ensuring that only one instance is constructed 
+during program runtime. Moreover, applying this design pattern would reduce coupling because classes would no longer be 
+constantly associated with RestaurantManagerApp. While there will be dependencies between RestaurantManagerApp and the 
+concrete classes in the GUI, these dependencies only occur when certain methods are called. Thus, this allows the classes
+in the GUI package to be less semantically coupled with RestaurantManagerApp, thereby improving the structure of this design.
+
+\
+Next, I would apply the Iterator Pattern to the ListOfRestaurant class as methods must first call ListOfRestaurant.getRestaurants()
+before being able to iterate over a ListOfRestaurant instance. Although this does not vastly affect performance or structure, 
+the code becomes more clear and readable if the Iterator Pattern is applied. This would also allow us to abstract out the logic
+of iterating over a collection.
+
+\
+Finally, I would refactor the DisplayPanel, SortPanel, RemovePanel, and ShowRestaurantsPanel classes such that the 
+ShowRestaurantsPanel is a superclass that is extended by the SortPanel and RemovePanel classes. In turn, the DisplayPanel class
+could then be removed completely. Currently, the ShowRestaurantsPanel is responsible for displaying all the restaurants in any 
+collection it is a given. This function is important to the DisplayPanel, SortPanel, and RemovePanel classes, as they all 
+present a collection of restaurants to the user after some action is performed. In the design thus far, SortPanel is 
+associated with ShowRestaurantsPanel to lay out the sorted restaurant collection, while RemovePanel is dependent on DisplayPanel 
+to lay out the altered restaurant collection. This approach to displaying restaurants is inconsistent 
+among the four classes and there is substantial duplicate code. Furthermore, there is weak cohesion in the SortPanel and 
+RemovePanel classes because they are responsible for both displaying the restaurants and sorting/removing restaurants.
+By creating a new type hierarchy, the repeated function of displaying restaurants can be abstracted, 
+enabling subclasses to better follow the Single Responsibility Principle. In addition, by passing the current collection of restaurants
+into ShowRestaurantsPanel, the DisplayPanel class would not longer be needed. 
+After this refacting, each class would be better centered around one cohesive concept.
+
 
 # Attribution
 - Drumroll Please GIF: https://media0.giphy.com/media/Xg6MhjKhDwoBwni45d/giphy.gif?cid=ecf05e471jc6inxc0thuin9wyt6hlbs6cqecyt3ql5ejw7po&rid=giphy.gif&ct=g
