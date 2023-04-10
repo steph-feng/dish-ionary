@@ -27,7 +27,7 @@ public class Restaurant implements Writable {
         this.rating = 0;
         this.cuisine = "";
         this.pricing = "";
-        this.hours = new ArrayList<>();
+        this.hours = new ArrayList<>(7);
         EventLog.getInstance().logEvent(new Event("Created a new restaurant named: " + name));
     }
 

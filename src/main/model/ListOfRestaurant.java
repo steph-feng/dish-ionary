@@ -136,7 +136,7 @@ public class ListOfRestaurant implements Writable {
 
     // EFFECTS: returns all restaurants in list
     public ArrayList<Restaurant> getRestaurants() {
-        EventLog.getInstance().logEvent(new Event("Displayed all restaurants currently in the collection."));
+        EventLog.getInstance().logEvent(new Event("Displayed all restaurants currently in the collection"));
         return restaurants;
     }
 

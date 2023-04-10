@@ -31,16 +31,7 @@ public class SortPanel implements ActionListener {
         JLabel sortLabel = new JLabel("Sorting Options:");
         sortLabel.setLabelFor(sortOptions);
 
-        homeButton = new JButton("Home");
-        homeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == homeButton) {
-                    app.switchToMainPanel();
-                }
-            }
-        });
-        homeButton.setPreferredSize(new Dimension(75, 40));
+        initializeHomeButton(app);
 
         buttonPanel = new JPanel(new GridLayout(1, 4));
         buttonPanel.add(homeButton);
@@ -52,6 +43,21 @@ public class SortPanel implements ActionListener {
 
         split = new JSplitPane(SwingConstants.HORIZONTAL, buttonPanel, restaurantPanel);
 
+    }
+
+    // EFFECTS: creates home button and adds listener
+    private void initializeHomeButton(RestaurantManagerApp app) {
+        homeButton = new JButton("Home");
+        ActionListener homeButtonListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == homeButton) {
+                    app.switchToMainPanel();
+                }
+            }
+        };
+        homeButton.addActionListener(homeButtonListener);
+        homeButton.setPreferredSize(new Dimension(75, 40));
     }
 
     // EFFECTS: sorts and displays restaurant by pricing or rating depending on ActionEvent

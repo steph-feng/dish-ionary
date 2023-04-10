@@ -13,7 +13,7 @@ import java.io.PrintWriter;
  */
 
 public class JsonWriter {
-    private int indentFactor;
+    private static final int indentFactor = 4;
     private PrintWriter writer;
     private String destination;
 

@@ -10,15 +10,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.awt.event.WindowStateListener;
 import java.io.IOException;
 
 /*
  * Displays home window and performs its loading, saving, and adding functions
  */
 
-public class RestaurantManagerApp {
+public class RestaurantManagerApp extends WindowAdapter {
     private JFrame mainFrame;
     private MainPanel mainPanel;
     private AddPanel addPanel;
@@ -47,15 +45,7 @@ public class RestaurantManagerApp {
         mainFrame.pack();
         mainFrame.setSize(new Dimension(400, 300));
         mainFrame.setVisible(true);
-        WindowListener listener = new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                for (Event next : EventLog.getInstance()) {
-                    System.out.println(next.getDescription());
-                }
-            }
-        };
-        mainFrame.addWindowListener(listener);
+        mainFrame.addWindowListener(this);
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
     }
@@ -140,5 +130,12 @@ public class RestaurantManagerApp {
     // EFFECTS: returns mainFrame
     public JFrame getMainFrame() {
         return mainFrame;
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        for (Event next : EventLog.getInstance()) {
+            System.out.println(next.getDescription());
+        }
     }
 }

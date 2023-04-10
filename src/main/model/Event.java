@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 
-/**
+/*
  * Represents an alarm system event.
  */
 
@@ -13,31 +13,18 @@ public class Event {
     private Date dateLogged;
     private String description;
 
-    /**
-     * Creates an event with the given description
-     * and the current date/time stamp.
-     *
-     * @param description a description of the event
-     */
+    // EFFECTS: Creates an event with the given description and the current date/time stamp
     public Event(String description) {
         dateLogged = Calendar.getInstance().getTime();
         this.description = description;
     }
 
-    /**
-     * Gets the date of this event (includes time).
-     *
-     * @return the date of the event
-     */
+    // EFFECTS: gets the date of this event (includes time)
     public Date getDate() {
         return dateLogged;
     }
 
-    /**
-     * Gets the description of this event.
-     *
-     * @return the description of the event
-     */
+    // EFFECTS: gets the description of this event
     public String getDescription() {
         return description;
     }

@@ -1,6 +1,5 @@
 package ui.gui;
 
-import model.ListOfRestaurant;
 import model.Restaurant;
 
 import javax.swing.*;
@@ -14,7 +13,6 @@ import java.awt.event.ActionListener;
 
 public class ModifyPanel extends AddPanel implements ActionListener {
     private RestaurantManagerApp app;
-    private ListOfRestaurant restaurants;
     private JSplitPane modifyPane;
     private JSplitPane detailsPane;
     private JSplitPane noDetailsPane;
@@ -30,7 +28,6 @@ public class ModifyPanel extends AddPanel implements ActionListener {
     public ModifyPanel(RestaurantManagerApp app) {
         super(app);
         this.app = app;
-        restaurants = app.getRestaurantCollection();
         searchButton = new JButton("Search");
         searchButton.addActionListener(this);
         modifyPanel = new JPanel(new FlowLayout());
@@ -102,7 +99,7 @@ public class ModifyPanel extends AddPanel implements ActionListener {
     // EFFECTS: displays previously inputted restaurant details, returns true if restaurant is in collection
     //          returns false if restaurant is not in collection and display message
     private Boolean processNameField() {
-        for (Restaurant r : restaurants.getRestaurants()) {
+        for (Restaurant r : app.getRestaurantCollection().getRestaurants()) {
             if (searchField.getText().equals(r.getName())) {
                 nameField.setText(r.getName());
                 cuisineField.setText(r.getCuisine());
