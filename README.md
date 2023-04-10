@@ -73,13 +73,7 @@ concrete classes in the GUI, these dependencies only occur when certain methods 
 in the GUI package to be less semantically coupled with RestaurantManagerApp, thereby improving the structure of this design.
 
 \
-Next, I would apply the Iterator Pattern to the ListOfRestaurant class as methods must first call ListOfRestaurant.getRestaurants()
-before being able to iterate over a ListOfRestaurant instance. Although this does not vastly affect performance or structure, 
-the code becomes more clear and readable if the Iterator Pattern is applied. This would also allow us to abstract out the logic
-of iterating over a collection.
-
-\
-Finally, I would refactor the DisplayPanel, SortPanel, RemovePanel, and ShowRestaurantsPanel classes such that the 
+Next, I would refactor the DisplayPanel, SortPanel, RemovePanel, and ShowRestaurantsPanel classes such that the 
 ShowRestaurantsPanel is a superclass that is extended by the SortPanel and RemovePanel classes. In turn, the DisplayPanel class
 could then be removed completely. Currently, the ShowRestaurantsPanel is responsible for displaying all the restaurants in any 
 collection it is a given. This function is important to the DisplayPanel, SortPanel, and RemovePanel classes, as they all 
