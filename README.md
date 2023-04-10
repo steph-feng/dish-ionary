@@ -57,7 +57,7 @@ Sorted restaurant collection by pricing from low to high.\
 Provided a random restaurant recommendation.\
 Displayed all restaurants currently in the collection.\
 Removed a restaurant named Sura from the collection.\
-Displayed all restaurants currently in the collection.\
+Displayed all restaurants currently in the collection.
 
 # Phase 4: Task 3
 To refactor this design, I would first apply the Singleton Design Pattern to the RestaurantManagerApp class.
