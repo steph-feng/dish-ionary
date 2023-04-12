@@ -5,7 +5,7 @@ import java.util.Date;
 
 
 /*
- * Represents an alarm system event.
+ * Represents a ListOfRestaurant event.
  */
 
 public class Event {
